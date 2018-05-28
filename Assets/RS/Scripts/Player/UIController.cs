@@ -21,29 +21,19 @@ public class UIController : MonoBehaviour
 
     void Update()
     {
-        if(_mousePointer != null && _inventory != null)
+        MouseImage.transform.position = _mousePointer.GetScreenPosition();
+        if (_selectedItem != null)
         {
-            MouseImage.transform.position = _mousePointer.GetScreenPosition();
-            if (_selectedItem != null)
-            {
-                SetIconToMousePostion();
-                if (EventSystem.current.IsPointerOverGameObject() == false)
-                {
-                    //Todo : why are there controls here?
-                    if (Input.GetButtonDown("Fire1"))
-                    {
-                        DropItem();
-                    }
-                }
-            }
+            SetIconToMousePostion();
+        }
 
-            if (_selectedItem == null)
-            {
-                DisableMouseImage();
-            }
+        if (_selectedItem == null)
+        {
+            DisableMouseImage();
         }
     }
 
+    //Called By UI Button
     public void SwapUiPanel(GameObject panel)
     {
         if (_activeUIPanel != null)
@@ -63,7 +53,7 @@ public class UIController : MonoBehaviour
         }
     }
 
-    private void DropItem()
+    public void DropItem()
     {
         
         _inventory.DropItem(_selectedItem, _mousePointer.GetWorldSpacePosition());
@@ -83,5 +73,10 @@ public class UIController : MonoBehaviour
     {
         var item = _inventory.SlotClicked(slot, _selectedItem);
         _selectedItem = item;
+    }
+
+    public bool HaveItemSelected()
+    {
+        return _selectedItem != null;
     }
 }

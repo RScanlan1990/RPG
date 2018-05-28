@@ -17,6 +17,7 @@ class Player : MonoBehaviour {
     private AnimationRouter _animationController;
     private Inventory _inventory;
     private PostProcess_Controller _postProcess;
+    private UIController _uiController;
 
     void Awake ()
 	{
@@ -29,6 +30,7 @@ class Player : MonoBehaviour {
         _animationController = gameObject.AddComponent<AnimationRouter>();
 	    _inventory = gameObject.AddComponent<Inventory>();
 	    _postProcess = gameObject.AddComponent<PostProcess_Controller>();
+	    _uiController = gameObject.GetComponent<UIController>();
         _inventory.Init(Inventory);
 	}
 
@@ -37,16 +39,29 @@ class Player : MonoBehaviour {
         if (EventSystem.current.IsPointerOverGameObject() == false)
         {
             var clickable = _mousePointer.Click();
-            if (Input.GetButton("Fire1") && clickable == null)
+            if (Input.GetButton("Fire1"))
             {
-                var mousePosition = _mousePointer.GetWorldSpacePosition();
-                _movement.MoveTowardsWorldPositon(PlayerSpeed, mousePosition);
-                return;
+                if (_uiController.HaveItemSelected())
+                {
+                    _uiController.DropItem();
+                    return;
+                }
+
+                if (clickable == null)
+                {
+                    var mousePosition = _mousePointer.GetWorldSpacePosition();
+                    _movement.MoveTowardsWorldPositon(PlayerSpeed, mousePosition);
+                    return;
+                }
             }
 
-            if (Input.GetButtonDown("Fire1") && clickable != null)
+            if (Input.GetButtonDown("Fire1"))
             {
-                DoClickable(clickable);
+                if (clickable != null)
+                {
+                    DoClickable(clickable);
+                    return;
+                }
             }
         }
     }
