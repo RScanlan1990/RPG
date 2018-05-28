@@ -4,7 +4,7 @@ public class MousePointer : CastRay
 {
     private Camera _camera;
 
-    public void Start()
+    void Awake()
     {
         _camera = gameObject.GetComponentInChildren<Camera>();
     }
