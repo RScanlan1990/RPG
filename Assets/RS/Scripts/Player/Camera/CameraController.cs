@@ -1,44 +1,41 @@
-﻿using UnityEngine;
+﻿using System.Security.Cryptography.X509Certificates;
+using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
     public Camera Camera { get; private set; }
-    private float _cameraXRotation;
-    private float _cameraValue;
 
-    private float maxZoom = 50.0f;
-    private float minZoom = 2.0f;
+    private float maxZoom = 35.0f;
+    private float minZoom = 5.0f;
+    private float _zoomValue;
+    private GameObject XRotator;
 
     void Start()
     {
-        _cameraXRotation = 35.0f;
-        _cameraValue = 1.0f;
         Camera = gameObject.GetComponentInChildren<Camera>();
-        transform.rotation = Quaternion.Euler(_cameraXRotation, 0, 0);
+        transform.rotation = Quaternion.Euler(35.0f, 0, 0);
+        XRotator = gameObject.transform.GetChild(0).gameObject;
     }
 
     void Update()
     {
-        var input = Input.GetAxis("Mouse ScrollWheel");
-        SetCameraPostion(input);
-        transform.rotation = Quaternion.Euler(_cameraXRotation, 0, 0);
+        var ZoomInput = Input.GetAxis("Vertical");
+        ZoomCamera(ZoomInput);
+        var VerticalRotation = Input.GetAxis("VerticalRotation");
+        var HorizontalRotation = Input.GetAxis("Horizontal");
+        RotateCamera(VerticalRotation, HorizontalRotation);
     }
 
-    private void SetCameraPostion(float input)
-    {
-        TryZoomCamera(input);
-    }
-
-    private void TryZoomCamera(float input)
+    private void ZoomCamera(float input)
     {
         var localForward = Camera.transform.worldToLocalMatrix.MultiplyVector(Camera.transform.forward);
-        var zoom = localForward * input;
+        var forwardZoom = localForward * input;
 
         if (input > 0)
         {
             if (Vector3.Distance(transform.position, Camera.transform.position) > minZoom)
             {
-                ZoomCamera(zoom);
+                ZoomCamera(forwardZoom);
             }
         }
 
@@ -46,13 +43,52 @@ public class CameraController : MonoBehaviour
         {
             if (Vector3.Distance(transform.position, Camera.transform.position) < maxZoom)
             {
-                ZoomCamera(zoom);
+                ZoomCamera(forwardZoom);
             }
         }
     }
 
     private void ZoomCamera(Vector3 zoom)
     {
-        Camera.transform.Translate(zoom * 10.0f);
+        
+        Camera.transform.Translate(zoom * 15.0f);
+    }
+
+    private void RotateCamera(float x, float y)
+    {
+        //var xRotation = XRotator.transform.rotation;
+        //xRotation.x -= x;
+        //xRotation.x = Mathf.Clamp(xRotation.x, 0.0f, 0.6f);
+        //XRotator.transform.rotation = xRotation;
+
+        var yRotation = transform.rotation;
+        yRotation.y = 0.0f;
+        yRotation.x = 0.0f;
+        yRotation.z = 0.0f;
+        transform.rotation = yRotation;
+        transform.Rotate(transform.up, y);
+
+    }
+
+    private void RotateCameraAroundX(float input)
+    {
+
+        var rotation = XRotator.transform.rotation;
+        rotation.x -= input * (10.0f * Time.deltaTime);
+        rotation.x = Mathf.Clamp(rotation.x, 0.0f, 0.6f);
+        rotation.y = 0;
+        rotation.z = 0;
+        XRotator.transform.rotation = rotation;
+    }
+
+    private void RotateCameraAroundY(float input)
+    {
+
+        var rotation = transform.rotation;
+        rotation.x = 0.0f;
+        rotation.y = input * (10.0f * Time.deltaTime);
+        rotation.y = Mathf.Clamp(rotation.x, 0.0f, 0.6f);
+        rotation.z = 0;
+        XRotator.transform.rotation = rotation;
     }
 }

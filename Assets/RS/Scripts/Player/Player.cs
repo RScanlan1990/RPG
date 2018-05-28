@@ -19,7 +19,7 @@ class Player : MonoBehaviour {
 
 	void Awake ()
 	{
-	    var cameraParent = gameObject.GetComponentInChildren<Camera>().gameObject.transform.parent.gameObject;
+	    var cameraParent = gameObject.GetComponentInChildren<Camera>().gameObject.transform.parent.parent.gameObject;
 	    _cameraController = cameraParent.AddComponent<CameraController>();
 	    _mousePointer = gameObject.AddComponent<MousePointer>();
         _movement = gameObject.AddComponent<Movement>();
