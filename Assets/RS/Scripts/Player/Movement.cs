@@ -2,6 +2,11 @@
 
 public class Movement : MonoBehaviour {
 
+    public Vector3 GetPlayerPosition()
+    {
+        return transform.position;
+    }
+
     public void MoveTowardsWorldPositon(float speed, Vector3 position)
     {
         var lookPos = position - transform.position;
