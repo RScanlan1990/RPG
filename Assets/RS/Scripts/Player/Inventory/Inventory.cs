@@ -45,7 +45,10 @@ public class Inventory : MonoBehaviour
 
     public bool DropItem(Item item, Vector3 dropPosition)
     {
-        Instantiate(item.ClickableGameObject, dropPosition, transform.rotation);
+        var heading = dropPosition - transform.position;
+        var distance = heading.magnitude;
+        var direction = heading / distance;
+        Instantiate(item.ClickableGameObject, transform.position + direction, transform.rotation);
         return true;
     }
 
