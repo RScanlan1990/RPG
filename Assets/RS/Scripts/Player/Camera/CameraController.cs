@@ -27,6 +27,7 @@ public class CameraController : MonoBehaviour
         LookAtPlayer();
         ZoomCamera(Input.GetAxis("Zoom"));
         AdjustCameraHeight(Input.GetAxis("Vertical"));
+        HorizontalRotation(Input.GetAxis("Horizontal"));
     }
 
     private void FollowPlayer()
@@ -46,13 +47,11 @@ public class CameraController : MonoBehaviour
         if (input > 0.0f && Vector3.Distance(Camera.transform.position, _playerPos) > minZoom)
         {
             Camera.transform.Translate(forwardZoom);
-            return;
         }
 
         if (input < 0.0f && Vector3.Distance(Camera.transform.position, _playerPos) < maxZoom)
         {
             Camera.transform.Translate(forwardZoom);
-            return;
         }
     }
 
@@ -72,82 +71,11 @@ public class CameraController : MonoBehaviour
             {
                 Camera.transform.Translate(direction);
             }
-
-
-            //if (input > 0.0f && distanceToGround < minHeight)
-            //{
-            //    Camera.transform.Translate(transform.up * -input);
-            //    return;
-            //}
-
-            //if (input < 0.0f && distanceToGround > maxHeight)
-            //{
-            //    Camera.transform.Translate(transform.up * input);
-            //    return;
-            //}
         }
     }
 
-
-
-
-
-
-
-
-
-    //private void ZoomCamera(float input)
-    //{
-    //    
-    //   
-
-    //    if (input > 0)
-    //    {
-    //        if (Vector3.Distance(transform.position, Camera.transform.position) > minZoom)
-    //        {
-    //            ZoomCamera(forwardZoom);
-    //        }
-    //    }
-
-    //    if (input < 0)
-    //    {
-    //        if (Vector3.Distance(transform.position, Camera.transform.position) < maxZoom)
-    //        {
-    //            ZoomCamera(forwardZoom);
-    //        }
-    //    }
-    //}
-
-
-    //private void RotateCamera(float x, float y)
-    //{
-    //    transform.Rotate(transform.up, y * 10.0f);
-    //    Vector3 localRight = transform.worldToLocalMatrix.MultiplyVector(transform.right);
-    //    _xRotator.transform.Rotate(localRight, x * 10.0f);
-    //    var clampedXRot = _xRotator.transform.rotation;
-    //    clampedXRot.x = Mathf.Clamp(clampedXRot.x, 0.1f, 0.5f);
-    //    _xRotator.transform.rotation = clampedXRot;
-    //}
-
-    //private void RotateCameraAroundX(float input)
-    //{
-
-    //    var rotation = _xRotator.transform.rotation;
-    //    rotation.x -= input * (10.0f * Time.deltaTime);
-    //    rotation.x = Mathf.Clamp(rotation.x, 0.0f, 0.6f);
-    //    rotation.y = 0;
-    //    rotation.z = 0;
-    //    _xRotator.transform.rotation = rotation;
-    //}
-
-    //private void RotateCameraAroundY(float input)
-    //{
-
-    //    var rotation = transform.rotation;
-    //    rotation.x = 0.0f;
-    //    rotation.y = input * (10.0f * Time.deltaTime);
-    //    rotation.y = Mathf.Clamp(rotation.x, 0.0f, 0.6f);
-    //    rotation.z = 0;
-    //    _xRotator.transform.rotation = rotation;
-    //}
+    private void HorizontalRotation(float input)
+    {
+        transform.Rotate(transform.up * (input * 5.0f));
+    }
 }
