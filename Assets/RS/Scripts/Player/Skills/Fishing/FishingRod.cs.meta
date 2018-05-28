@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 783babe3ffa5dd34c8499caa1094aae4
+timeCreated: 1524690428
+licenseType: Free
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - HookPrefab: {fileID: 1237149307697364, guid: fb9345b56355d33449ab730694177eba,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
