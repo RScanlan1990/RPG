@@ -18,7 +18,7 @@ class Player : MonoBehaviour {
     private Inventory _inventory;
     private PostProcess_Controller _postProcess;
 
-	void Awake ()
+    void Awake ()
 	{
 	    var cameraParent = gameObject.GetComponentInChildren<Camera>().gameObject.transform.parent.gameObject;
 	    _cameraController = cameraParent.AddComponent<CameraController>();
