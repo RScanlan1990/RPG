@@ -8,7 +8,7 @@ public class PostProcess_Controller : MonoBehaviour
     private Camera _camera;
     private Vector3 _focusVector;
 
-    void Start()
+    void Awake()
     {
         _camera = gameObject.GetComponentInChildren<Camera>();
     }

@@ -16,6 +16,7 @@ class Player : MonoBehaviour {
     private Skills _skills;
     private AnimationRouter _animationController;
     private Inventory _inventory;
+    private PostProcess_Controller _postProcess;
 
 	void Awake ()
 	{
@@ -27,6 +28,7 @@ class Player : MonoBehaviour {
         _skills = gameObject.AddComponent<Skills>();
         _animationController = gameObject.AddComponent<AnimationRouter>();
 	    _inventory = gameObject.AddComponent<Inventory>();
+	    _postProcess = gameObject.AddComponent<PostProcess_Controller>();
         _inventory.Init(Inventory);
 	}
 

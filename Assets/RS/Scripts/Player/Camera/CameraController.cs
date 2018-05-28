@@ -1,58 +1,81 @@
-﻿using UnityEngine;
+﻿using System.Security.Cryptography.X509Certificates;
+using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
     public Camera Camera { get; private set; }
-    private float _cameraXRotation;
-    private float _cameraValue;
 
-    private float maxZoom = 50.0f;
-    private float minZoom = 2.0f;
+    private float maxZoom = 35.0f;
+    private float minZoom = 5.0f;
+    private float maxHeight = 50.0f;
+    private float minHeight = 1.0f;
+    private float _zoomValue;
+    private GameObject _player;
+    private Vector3 _playerPos;
 
     void Start()
     {
-        _cameraXRotation = 35.0f;
-        _cameraValue = 1.0f;
         Camera = gameObject.GetComponentInChildren<Camera>();
-        transform.rotation = Quaternion.Euler(_cameraXRotation, 0, 0);
+        _player = gameObject.transform.parent.gameObject;
+        transform.parent = null;
     }
 
     void Update()
     {
-        var input = Input.GetAxis("Mouse ScrollWheel");
-        SetCameraPostion(input);
-        transform.rotation = Quaternion.Euler(_cameraXRotation, 0, 0);
+        _playerPos = new Vector3(_player.transform.position.x, _player.transform.position.y + 1.0f, _player.transform.position.z); ;
+        FollowPlayer();
+        LookAtPlayer();
+        ZoomCamera(Input.GetAxis("Zoom"));
+        AdjustCameraHeight(Input.GetAxis("Vertical"));
+        HorizontalRotation(Input.GetAxis("Horizontal"));
     }
 
-    private void SetCameraPostion(float input)
+    private void FollowPlayer()
     {
-        TryZoomCamera(input);
+        transform.position = _playerPos;
     }
 
-    private void TryZoomCamera(float input)
+    private void LookAtPlayer()
+    {
+        Camera.transform.LookAt(_playerPos);
+    }
+
+    private void ZoomCamera(float input)
     {
         var localForward = Camera.transform.worldToLocalMatrix.MultiplyVector(Camera.transform.forward);
-        var zoom = localForward * input;
-
-        if (input > 0)
+        var forwardZoom = localForward * input;
+        if (input > 0.0f && Vector3.Distance(Camera.transform.position, _playerPos) > minZoom)
         {
-            if (Vector3.Distance(transform.position, Camera.transform.position) > minZoom)
-            {
-                ZoomCamera(zoom);
-            }
+            Camera.transform.Translate(forwardZoom);
         }
 
-        if (input < 0)
+        if (input < 0.0f && Vector3.Distance(Camera.transform.position, _playerPos) < maxZoom)
         {
-            if (Vector3.Distance(transform.position, Camera.transform.position) < maxZoom)
+            Camera.transform.Translate(forwardZoom);
+        }
+    }
+
+    private void AdjustCameraHeight(float input)
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(Camera.transform.position, Camera.transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity))
+        {
+            var distanceToGround = hit.distance;
+            var direction = transform.up * input;
+            if (input < 0.0f && distanceToGround > minHeight)
             {
-                ZoomCamera(zoom);
+                Camera.transform.Translate(direction);
+            }
+
+            if (input > 0.0f && distanceToGround < maxHeight)
+            {
+                Camera.transform.Translate(direction);
             }
         }
     }
 
-    private void ZoomCamera(Vector3 zoom)
+    private void HorizontalRotation(float input)
     {
-        Camera.transform.Translate(zoom * 10.0f);
+        transform.Rotate(transform.up * (input * 5.0f));
     }
 }
