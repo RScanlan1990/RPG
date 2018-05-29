@@ -1,23 +1,38 @@
 ﻿using UnityEngine;
 
-public class Inventory : MonoBehaviour
-{
-    private Transform _inventory;
-    private InventorySlot[] _invetorySlots;
+public class Inventory : MonoBehaviour {
 
-    public void Init(Transform inventory)
+    public Transform InventoryTransform;
+    private InventorySlot[] _inventorySlots;
+
+    void OnEnable()
     {
-        _inventory = inventory;
-        _invetorySlots = _inventory.GetComponentsInChildren<InventorySlot>();
+        MouseController.OnClick += DoItem;
     }
 
-    public void DoItem(Clickable.ClickReturn clickReturn)
+    void OnDisable()
     {
-        switch (clickReturn.ClickAction)
+        MouseController.OnClick -= DoItem;
+    }
+
+    void Start()
+    {
+        _inventorySlots = InventoryTransform.GetComponentsInChildren<InventorySlot>();
+    }
+
+    public void DoItem(Clickable.ClickReturn clickReturn, Vector3 clickPosition)
+    {
+        if (clickReturn != null)
         {
-            case Clickable.ClickReturn.ClickActions.PickUp:
-                PickUpItem(clickReturn);
-                break;
+            if (clickReturn.ClickType == Clickable.ClickReturn.ClickTypes.Item)
+            {
+                switch (clickReturn.ClickAction)
+                {
+                    case Clickable.ClickReturn.ClickActions.PickUp:
+                        PickUpItem(clickReturn);
+                        break;
+                }
+            }
         }
     }
 
@@ -32,7 +47,7 @@ public class Inventory : MonoBehaviour
     {
         if (item != null)
         {
-            foreach (var slot in _invetorySlots)
+            foreach (var slot in _inventorySlots)
             {
                 if (slot.HaveItem() == false)
                 {
@@ -52,7 +67,6 @@ public class Inventory : MonoBehaviour
         return true;
     }
 
-    //Called By UI Controller
     public Item SlotClicked(InventorySlot slot, Item item)
     {
         var savedItem = slot.Item;

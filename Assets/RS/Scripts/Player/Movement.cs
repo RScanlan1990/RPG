@@ -1,20 +1,36 @@
 ﻿using UnityEngine;
+using System.Collections;
 
-public class Movement : MonoBehaviour {
+public class Movement : MonoBehaviour
+{
+    public float PlayerSpeed;
+
+    void OnEnable()
+    {
+        MouseController.OnClick += MoveTowardsWorldPositon;
+    }
+
+    void OnDisable()
+    {
+        MouseController.OnClick -= MoveTowardsWorldPositon;
+    }
 
     public Vector3 GetPlayerPosition()
     {
         return transform.position;
     }
 
-    public void MoveTowardsWorldPositon(float speed, Vector3 position)
+    public void MoveTowardsWorldPositon(Clickable.ClickReturn clickReturn, Vector3 clickPosition)
     {
-        var lookPos = position - transform.position;
-        lookPos.y = 0;
-        var rotation = Quaternion.LookRotation(lookPos);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 100.0F);
+        if (clickReturn == null)
+        {
+            var lookPos = clickPosition - transform.position;
+            lookPos.y = 0;
+            var rotation = Quaternion.LookRotation(lookPos);
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 100.0F);
 
-        position.y = transform.position.y;
-        this.transform.position += (position - this.transform.position).normalized * speed * Time.fixedDeltaTime * Mathf.Clamp(Vector3.Distance(position, transform.position), 0.0f, 1.0f);
+            clickPosition.y = transform.position.y;
+            this.transform.position += (clickPosition - this.transform.position).normalized * PlayerSpeed * Time.fixedDeltaTime * Mathf.Clamp(Vector3.Distance(clickPosition, transform.position), 0.0f, 1.0f);
+        }
     }
 }
