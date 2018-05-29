@@ -8,7 +8,7 @@ public class UIController : MonoBehaviour
 {
     public Image MouseImage;
     private Inventory _inventory;
-    private MousePointer _mousePointer;
+    private MouseController _mouseController;
     private Item _selectedItem;
 
     private GameObject _activeUIPanel;
@@ -16,12 +16,12 @@ public class UIController : MonoBehaviour
     void Start()
     {
         _inventory = gameObject.GetComponent<Inventory>();
-        _mousePointer = gameObject.GetComponent<MousePointer>();
+        _mouseController = gameObject.GetComponent<MouseController>();
     }
 
     void Update()
     {
-        MouseImage.transform.position = _mousePointer.GetScreenPosition();
+        MouseImage.transform.position = _mouseController.GetScreenPosition();
         if (_selectedItem != null)
         {
             SetIconToMousePostion();
@@ -56,7 +56,7 @@ public class UIController : MonoBehaviour
     public void DropItem()
     {
         
-        _inventory.DropItem(_selectedItem, _mousePointer.GetWorldSpacePosition());
+        _inventory.DropItem(_selectedItem, _mouseController.GetWorldSpacePosition());
         _selectedItem = null;
     }
 
