@@ -6,7 +6,6 @@ using UnityEngine.EventSystems;
 [RequireComponent(typeof(Skills))]
 [RequireComponent(typeof(UIController))]
 [RequireComponent(typeof(MouseController))]
-
 class Player : MonoBehaviour {
 
     private CameraController _cameraController;
