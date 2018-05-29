@@ -11,13 +11,29 @@ public class Inventory : MonoBehaviour
         _invetorySlots = _inventory.GetComponentsInChildren<InventorySlot>();
     }
 
-    public void DoItem(Clickable.ClickReturn clickReturn)
+    void OnEnable()
     {
-        switch (clickReturn.ClickAction)
+        MouseController.OnClick += DoItem;
+    }
+
+    void OnDisable()
+    {
+        MouseController.OnClick -= DoItem;
+    }
+
+    public void DoItem(Clickable.ClickReturn clickReturn, Vector3 clickPosition)
+    {
+        if (clickReturn != null)
         {
-            case Clickable.ClickReturn.ClickActions.PickUp:
-                PickUpItem(clickReturn);
-                break;
+            if (clickReturn.ClickType == Clickable.ClickReturn.ClickTypes.Item)
+            {
+                switch (clickReturn.ClickAction)
+                {
+                    case Clickable.ClickReturn.ClickActions.PickUp:
+                        PickUpItem(clickReturn);
+                        break;
+                }
+            }
         }
     }
 
@@ -52,7 +68,6 @@ public class Inventory : MonoBehaviour
         return true;
     }
 
-    //Called By UI Controller
     public Item SlotClicked(InventorySlot slot, Item item)
     {
         var savedItem = slot.Item;

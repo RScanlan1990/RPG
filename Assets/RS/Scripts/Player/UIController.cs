@@ -12,7 +12,18 @@ public class UIController : MonoBehaviour
     private Item _selectedItem;
 
     private GameObject _activeUIPanel;
-    
+
+    void OnEnable()
+    {
+        MouseController.OnClick += MouseClicked;
+    }
+
+    void OnDisable()
+    {
+        MouseController.OnClick -= MouseClicked;
+    }
+
+
     void Start()
     {
         _inventory = gameObject.GetComponent<Inventory>();
@@ -22,17 +33,9 @@ public class UIController : MonoBehaviour
     void Update()
     {
         MouseImage.transform.position = _mouseController.GetScreenPosition();
-        if (_selectedItem != null)
-        {
-            SetIconToMousePostion();
-        }
-
-        if (_selectedItem == null)
-        {
-            DisableMouseImage();
-        }
     }
 
+    #region SwapPanel
     //Called By UI Button
     public void SwapUiPanel(GameObject panel)
     {
@@ -43,21 +46,47 @@ public class UIController : MonoBehaviour
         _activeUIPanel = panel;
         panel.SetActive(true);
     }
+    #endregion
 
-    private void SetIconToMousePostion()
+    #region Slot Clicked
+    //Called By UI Button
+    public void SlotClicked(InventorySlot slot)
     {
-        if (MouseImage.enabled == false)
+        var item = _inventory.SlotClicked(slot, _selectedItem);
+        _selectedItem = item;
+        AdjustMouseIcon();
+    }
+
+    private void AdjustMouseIcon()
+    {
+        if (_selectedItem != null)
         {
             MouseImage.sprite = _selectedItem.Image;
             MouseImage.enabled = true;
         }
+        else
+        {
+            DisableMouseImage();
+        }
     }
+    #endregion
 
+    #region Delegates
+    private void MouseClicked(Clickable.ClickReturn clickReturn, Vector3 clickPosition)
+    {
+        if (_selectedItem != null)
+        {
+            DropItem();
+        }
+    }
+    #endregion
+
+    #region Drop
     public void DropItem()
     {
-        
         _inventory.DropItem(_selectedItem, _mouseController.GetWorldSpacePosition());
         _selectedItem = null;
+        DisableMouseImage();
     }
 
     private void DisableMouseImage()
@@ -67,16 +96,5 @@ public class UIController : MonoBehaviour
             MouseImage.enabled = false;
         }
     }
-
-    //Called By UI Button
-    public void SlotClicked(InventorySlot slot)
-    {
-        var item = _inventory.SlotClicked(slot, _selectedItem);
-        _selectedItem = item;
-    }
-
-    public bool HaveItemSelected()
-    {
-        return _selectedItem != null;
-    }
+    #endregion
 }

@@ -3,6 +3,7 @@ using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(Movement))]
 [RequireComponent(typeof(Skills))]
+[RequireComponent(typeof(UIController))]
 [RequireComponent(typeof(MouseController))]
 class Player : MonoBehaviour {
 
@@ -14,7 +15,6 @@ class Player : MonoBehaviour {
     private AnimationRouter _animationController;
     private Inventory _inventory;
     private PostProcess_Controller _postProcess;
-    private UIController _uiController;
 
     void Awake ()
 	{
@@ -24,7 +24,6 @@ class Player : MonoBehaviour {
         _animationController = gameObject.AddComponent<AnimationRouter>();
 	    _inventory = gameObject.AddComponent<Inventory>();
 	    _postProcess = gameObject.AddComponent<PostProcess_Controller>();
-	    _uiController = gameObject.GetComponent<UIController>();
         _inventory.Init(Inventory);
 	}
 
