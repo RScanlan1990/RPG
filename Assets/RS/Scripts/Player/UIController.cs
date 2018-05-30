@@ -10,7 +10,6 @@ public class UIController : MonoBehaviour
     private Inventory _inventory;
     private MouseController _mouseController;
     private Item _selectedItem;
-
     private GameObject _activeUIPanel;
 
     void OnEnable()
@@ -22,7 +21,6 @@ public class UIController : MonoBehaviour
     {
         MouseController.OnClick -= MouseClicked;
     }
-
 
     void Start()
     {
