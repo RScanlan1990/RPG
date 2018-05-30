@@ -424,7 +424,6 @@
     <Compile Include="Assets\RS\Scripts\Player\Skills\Fishing\Fishing.cs" />
     <Compile Include="Assets\RS\Scripts\Player\Skills\Fishing\FishingRod.cs" />
     <Compile Include="Assets\RS\Scripts\Player\Skills\Skill.cs" />
-    <Compile Include="Assets\RS\Scripts\Player\Skills\Skills.cs" />
     <Compile Include="Assets\RS\Scripts\Player\Target.cs" />
     <Compile Include="Assets\RS\Scripts\Player\UIController.cs" />
     <Compile Include="Assets\RS\Scripts\UI\Inventory\InventorySlot.cs" />

@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Skill : MonoBehaviour
 {
-    protected float _xp = 0;
-    protected int _level = 1;
-    protected Dictionary<int, int> Levels = new Dictionary<int, int>
+    public SkillSlot SkillSlot;
+    protected float _Xp = 0;
+    protected int _Level = 1;
+    protected Dictionary<int, int> _Levels = new Dictionary<int, int>
     {
         {1, 0},
         {2, 10},
@@ -23,4 +25,30 @@ public class Skill : MonoBehaviour
         {14, 40960},
         {15, 81920},
     };
+
+    protected void Start()
+    {
+        SkillSlot.UpdateSlotLevelAndXp(_Level.ToString(), _Xp.ToString());
+    }
+
+    protected void AddXp(float xp)
+    {
+        _Xp += xp;
+        SkillSlot.UpdateSlotXp(_Xp.ToString());
+        CheckForLevelUp();
+    }
+
+    private void CheckForLevelUp()
+    {
+        var level = _Levels.Where(l => l.Value <= _Xp).ToList().OrderByDescending(l => l.Value).First();
+        var difference = level.Key - _Level;
+        if (difference > 0)
+        {
+            for (int i = 0; i < difference; i++)
+            {
+                _Level++;
+                SkillSlot.UpdateSlotLevel(_Level.ToString());
+            }
+        }
+    }
 }

@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(Inventory))]
 [RequireComponent(typeof(Movement))]
-[RequireComponent(typeof(Skills))]
+[RequireComponent(typeof(Fishing))]
 [RequireComponent(typeof(UIController))]
 [RequireComponent(typeof(MouseController))]
 class Player : MonoBehaviour {
