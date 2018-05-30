@@ -1,8 +1,10 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class Skills : MonoBehaviour
 {
     private Fishing _fishing;
+    public List<Skill> SkillList;
 
     void OnEnable()
     {
@@ -16,7 +18,16 @@ public class Skills : MonoBehaviour
 
     private void Start()
     {
+        AddSkills();
         _fishing = gameObject.AddComponent<Fishing>();
+    }
+
+    private void AddSkills()
+    {
+        foreach (var skill in SkillList)
+        {
+
+        }
     }
 
     public void DoSkill(Clickable.ClickReturn clickReturn, Vector3 clickPosition)

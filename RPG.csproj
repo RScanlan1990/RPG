@@ -12,15 +12,12 @@
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <TargetFrameworkProfile></TargetFrameworkProfile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2017.3.1f1</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <LangVersion>6</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
@@ -420,7 +417,6 @@
     <Compile Include="Assets\RS\Scripts\Player\AnimationController.cs" />
     <Compile Include="Assets\RS\Scripts\Player\Camera\CameraController.cs" />
     <Compile Include="Assets\RS\Scripts\Player\Inventory\Inventory.cs" />
-    <Compile Include="Assets\RS\Scripts\Player\Inventory\InventorySlot.cs" />
     <Compile Include="Assets\RS\Scripts\Player\Mouse\CastRay.cs" />
     <Compile Include="Assets\RS\Scripts\Player\Mouse\MouseController.cs" />
     <Compile Include="Assets\RS\Scripts\Player\Movement.cs" />
@@ -431,6 +427,8 @@
     <Compile Include="Assets\RS\Scripts\Player\Skills\Skills.cs" />
     <Compile Include="Assets\RS\Scripts\Player\Target.cs" />
     <Compile Include="Assets\RS\Scripts\Player\UIController.cs" />
+    <Compile Include="Assets\RS\Scripts\UI\Inventory\InventorySlot.cs" />
+    <Compile Include="Assets\RS\Scripts\UI\Skills\SkillSlot.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Asset_Store\EffectExamples\Shared\Shaders\SurfaceShader_VC.shader" />
