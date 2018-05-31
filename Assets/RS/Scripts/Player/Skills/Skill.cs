@@ -26,9 +26,33 @@ public class Skill : MonoBehaviour
         {15, 81920},
     };
 
+    public delegate void SkillAction(float skillTime);
+    public static event SkillAction SkillActive;
+
+    public delegate void SkillStart();
+    public static event SkillStart SkillStarted;
+
+    public delegate void SkillEnd();
+    public static event SkillEnd SkillEnded;
+
     protected void Start()
     {
         SkillSlot.UpdateSlotLevelAndXp(_Level.ToString(), _Xp.ToString());
+    }
+
+    protected void ActivateSkill(float skillTime)
+    {
+        SkillActive(skillTime);
+    }
+
+    protected void StartSkill()
+    {
+        SkillStarted();
+    }
+
+    protected void EndSkill()
+    {
+        SkillEnded();
     }
 
     protected void AddXp(float xp)

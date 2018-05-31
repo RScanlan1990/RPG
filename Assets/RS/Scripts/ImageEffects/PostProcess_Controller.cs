@@ -5,19 +5,25 @@ using UnityEngine.PostProcessing;
 
 public class PostProcess_Controller : MonoBehaviour
 {
+    public float DofFocalLengthMax;
+    public float DofFocalLengthMin;
+
     private Camera _camera;
+    private CameraController _cameraController;
     private PostProcessingProfile _postProcessing;
     private Movement _movement;
 
     void Awake()
     {
         _camera = gameObject.GetComponentInChildren<Camera>();
+        _cameraController = gameObject.GetComponentInChildren<CameraController>();
         _postProcessing = _camera.GetComponent<PostProcessingBehaviour>().profile;
     }
 
     void Start()
     {
         _movement = gameObject.GetComponent<Movement>();
+        _postProcessing.depthOfField.settings = CalculateDof();
     }
 
     void Update()

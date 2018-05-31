@@ -7,22 +7,23 @@ public class CameraController : MonoBehaviour
 
     private float maxZoom = 35.0f;
     private float minZoom = 5.0f;
-    private float maxHeight = 50.0f;
+    private float maxHeight = 60.0f;
     private float minHeight = 1.0f;
     private float _zoomValue;
+    private GameObject CameraRotator;
     private GameObject _player;
     private Vector3 _playerPos;
 
     void Start()
     {
         Camera = gameObject.GetComponentInChildren<Camera>();
-        _player = gameObject.transform.parent.gameObject;
-        transform.parent = null;
+        CameraRotator = Camera.transform.parent.gameObject;
+        _player = gameObject;
+        CameraRotator.transform.parent = null;
     }
 
     void Update()
     {
-        _playerPos = new Vector3(_player.transform.position.x, _player.transform.position.y + 1.0f, _player.transform.position.z); ;
         FollowPlayer();
         LookAtPlayer();
         ZoomCamera(Input.GetAxis("Zoom"));
@@ -32,7 +33,8 @@ public class CameraController : MonoBehaviour
 
     private void FollowPlayer()
     {
-        transform.position = _playerPos;
+        _playerPos = new Vector3(_player.transform.position.x, _player.transform.position.y + 1.0f, _player.transform.position.z);
+        CameraRotator.transform.position = _playerPos;
     }
 
     private void LookAtPlayer()
@@ -76,6 +78,6 @@ public class CameraController : MonoBehaviour
 
     private void HorizontalRotation(float input)
     {
-        transform.Rotate(transform.up * (input * 5.0f));
+        CameraRotator.transform.Rotate(CameraRotator.transform.up * (input * 5.0f));
     }
 }

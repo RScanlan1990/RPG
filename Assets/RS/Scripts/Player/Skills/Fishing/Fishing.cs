@@ -36,22 +36,13 @@ public class Fishing : Skill
         _inventory = gameObject.GetComponent<Inventory>();
     }
 
-    public void DoSkill(Clickable.ClickReturn clickReturn, Vector3 clickPosition)
-    {
-        if (clickReturn != null && _amFishing == false)
-        {
-            _amFishing = true;
-            if (clickReturn.ClickAction == Clickable.ClickReturn.ClickActions.Fish)
-            {
-                Fish(clickReturn);
-            }
-        }
-    }
-
     private void Update()
     {
         if (_amFishing)
         {
+            var fishTime = _fishingTimer / FishingTime();
+            base.ActivateSkill(fishTime);
+
             if (_animationRouter.CurrentEvent == AnimationRouter.AnimationEvent.MidCast)
             {
                 _fishingTimer -= Time.deltaTime;
@@ -69,23 +60,45 @@ public class Fishing : Skill
         }
     }
 
-    private float FishingTime()
+    public void DoSkill(Clickable.ClickReturn clickReturn, Vector3 clickPosition)
     {
-        return 5.0f;
+        if (clickReturn != null && _amFishing == false)
+        {
+            _amFishing = true;
+            if (clickReturn.ClickAction == Clickable.ClickReturn.ClickActions.Fish)
+            {
+                Fish(clickReturn);
+            }
+        }
     }
 
-    public void Fish(Clickable.ClickReturn clickReturn)
+    protected void Fish(Clickable.ClickReturn clickReturn)
     {
+        StartSkill();
         _fishingPosition = transform.position;
         _fishingZone = clickReturn.ClickedObject.GetComponent<FishingZone>();
         _fishingRod.Cast(clickReturn.ClickPosition);
         _animationRouter.AnimationEventRouter(AnimationRouter.AnimationEvent.Cast);
     }
 
+    private float FishingTime()
+    {
+        return 5.0f;
+    }
+
     private void TryCatchFish()
     {
         var fish = _fishingZone.RequestCatch(_Level);
         CatchFish(fish);
+    }
+
+    private bool HasPlayerMovedWhileFishing()
+    {
+        if (Vector3.Distance(transform.position, _fishingPosition) >= 2.0f)
+        {
+            return true;
+        }
+        return false;
     }
 
     private void CatchFish(Fish fish)
@@ -102,15 +115,6 @@ public class Fishing : Skill
         }
     }
 
-    private bool HasPlayerMovedWhileFishing()
-    {
-        if (Vector3.Distance(transform.position, _fishingPosition) >= 2.0f)
-        {
-            return true;
-        }
-        return false;
-    }
-
     private void Reset()
     {
         if (_amFishing)
@@ -119,6 +123,7 @@ public class Fishing : Skill
             _amFishing = false;
             _fishingTimer = FishingTime();
             _fishingRod.ReelIn();
+            EndSkill();
             _animationRouter.AnimationEventRouter(AnimationRouter.AnimationEvent.FishingEnd);
         }
     }
