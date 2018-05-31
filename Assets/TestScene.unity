@@ -974,6 +974,7 @@ MonoBehaviour:
   ClickType: 0
   Fishes:
   - {fileID: 11400000, guid: 1b15e5ac0910eb541921aa47ea13cfa8, type: 2}
+  - {fileID: 11400000, guid: cc928d7deebadea42ad49c33256b2862, type: 2}
 --- !u!65 &184518913
 BoxCollider:
   m_ObjectHideFlags: 0
