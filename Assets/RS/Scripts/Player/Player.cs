@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
+[RequireComponent(typeof(PostProcess_Controller))]
 [RequireComponent(typeof(Inventory))]
 [RequireComponent(typeof(Movement))]
 [RequireComponent(typeof(Fishing))]
@@ -12,7 +13,6 @@ class Player : MonoBehaviour {
     //private Target _target;
 
     private AnimationRouter _animationController;
-    private PostProcess_Controller _postProcess;
 
     void Awake ()
 	{
@@ -20,7 +20,6 @@ class Player : MonoBehaviour {
 	    _cameraController = cameraParent.AddComponent<CameraController>();
         //_target = gameObject.AddComponent<Target>();
         _animationController = gameObject.AddComponent<AnimationRouter>();
-	    _postProcess = gameObject.AddComponent<PostProcess_Controller>();
 	}
 
     public void SendAnimationEventToController(AnimationRouter.AnimationEvent animationEvent)

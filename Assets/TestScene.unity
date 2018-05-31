@@ -5029,6 +5029,7 @@ GameObject:
   - component: {fileID: 255283999}
   - component: {fileID: 255284000}
   - component: {fileID: 255283998}
+  - component: {fileID: 255284001}
   - component: {fileID: 255283995}
   m_Layer: 2
   m_Name: Player
@@ -5158,6 +5159,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InventoryTransform: {fileID: 1018790749}
+--- !u!114 &255284001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 255283991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c55d29084f1b634794fbc0731a62a6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &283518924
 GameObject:
   m_ObjectHideFlags: 0
