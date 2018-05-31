@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
+    public Slider SkillSlider;
     public Image MouseImage;
     private Inventory _inventory;
     private MouseController _mouseController;
@@ -15,11 +16,17 @@ public class UIController : MonoBehaviour
     void OnEnable()
     {
         MouseController.OnClick += MouseClicked;
+        Skill.SkillActive += SkillActive;
+        Skill.SkillEnded += SkillEnded;
+        Skill.SkillStarted += SkillStarted;
     }
 
     void OnDisable()
     {
         MouseController.OnClick -= MouseClicked;
+        Skill.SkillActive -= SkillActive;
+        Skill.SkillEnded -= SkillEnded;
+        Skill.SkillStarted -= SkillStarted;
     }
 
     void Start()
@@ -95,4 +102,23 @@ public class UIController : MonoBehaviour
         }
     }
     #endregion
+
+    private void SkillActive(float skillTime)
+    {
+        if (SkillSlider.transform.parent.gameObject.activeSelf == false)
+        {
+            SkillSlider.transform.parent.gameObject.SetActive(true);
+        }
+        SkillSlider.value = skillTime;
+    }
+
+    private void SkillStarted()
+    {
+        SkillSlider.transform.parent.gameObject.SetActive(true);
+    }
+
+    private void SkillEnded()
+    {
+        SkillSlider.transform.parent.gameObject.SetActive(false);
+    }
 }
