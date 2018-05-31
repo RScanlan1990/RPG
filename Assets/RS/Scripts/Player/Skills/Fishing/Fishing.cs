@@ -40,14 +40,9 @@ public class Fishing : Skill
     {
         if (_amFishing)
         {
+            _fishingTimer -= Time.deltaTime;
             var fishTime = _fishingTimer / FishingTime();
-            base.ActivateSkill(fishTime);
-
-            if (_animationRouter.CurrentEvent == AnimationRouter.AnimationEvent.MidCast)
-            {
-                _fishingTimer -= Time.deltaTime;
-            }
-
+            base.ActivateSkill(fishTime);   
             if (_fishingTimer <= 0 && _catchingFish == false)
             {
                 TryCatchFish();
