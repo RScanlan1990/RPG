@@ -20,7 +20,7 @@ public class Inventory : MonoBehaviour {
         _inventorySlots = InventoryTransform.GetComponentsInChildren<InventorySlot>();
     }
 
-    public void DoItem(Clickable.ClickReturn clickReturn, Vector3 clickPosition)
+    private void DoItem(Clickable.ClickReturn clickReturn, Vector3 clickPosition)
     {
         if (clickReturn != null)
         {

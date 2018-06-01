@@ -409,12 +409,13 @@
     <Compile Include="Assets\Asset_Store\PostProcessing\Runtime\Utils\MaterialFactory.cs" />
     <Compile Include="Assets\Asset_Store\PostProcessing\Runtime\Utils\RenderTextureFactory.cs" />
     <Compile Include="Assets\Asset_Store\PostProcessing\Utilities\CustomMotionTexture\ExampleWheelController.cs" />
+    <Compile Include="Assets\RS\Scripts\Clickable\Clickable.cs" />
+    <Compile Include="Assets\RS\Scripts\Clickable\Skills\Fishing\FishingZone.cs" />
     <Compile Include="Assets\RS\Scripts\ImageEffects\PostProcess_Controller.cs" />
-    <Compile Include="Assets\RS\Scripts\Interactable\Items\Clickable.cs" />
-    <Compile Include="Assets\RS\Scripts\Interactable\Items\Equipable\Skills\Fishing\FishingRod2.cs" />
-    <Compile Include="Assets\RS\Scripts\Interactable\Items\Fish\Fish.cs" />
-    <Compile Include="Assets\RS\Scripts\Interactable\Items\Item.cs" />
-    <Compile Include="Assets\RS\Scripts\Interactable\Skills\Fishing\FishingZone.cs" />
+    <Compile Include="Assets\RS\Scripts\Items\Consumables\Fish\Fish.cs" />
+    <Compile Include="Assets\RS\Scripts\Items\Equipable\FishingRod\FishingRod.cs" />
+    <Compile Include="Assets\RS\Scripts\Items\Equipable\FishingRod\Hook.cs" />
+    <Compile Include="Assets\RS\Scripts\Items\Item.cs" />
     <Compile Include="Assets\RS\Scripts\Player\AnimationController.cs" />
     <Compile Include="Assets\RS\Scripts\Player\Camera\CameraController.cs" />
     <Compile Include="Assets\RS\Scripts\Player\Inventory\Inventory.cs" />
@@ -423,8 +424,6 @@
     <Compile Include="Assets\RS\Scripts\Player\Movement.cs" />
     <Compile Include="Assets\RS\Scripts\Player\Player.cs" />
     <Compile Include="Assets\RS\Scripts\Player\Skills\Fishing\Fishing.cs" />
-    <Compile Include="Assets\RS\Scripts\Player\Skills\Fishing\FishingRod.cs" />
-    <Compile Include="Assets\RS\Scripts\Player\Skills\Fishing\Hook.cs" />
     <Compile Include="Assets\RS\Scripts\Player\Skills\Skill.cs" />
     <Compile Include="Assets\RS\Scripts\Player\Target.cs" />
     <Compile Include="Assets\RS\Scripts\Player\UIController.cs" />

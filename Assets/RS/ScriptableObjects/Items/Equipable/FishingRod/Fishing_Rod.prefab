@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4095040988335192}
   - component: {fileID: 33303401739445672}
   - component: {fileID: 23821923635314782}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: FishingRodGraphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4637718231881976}
   - component: {fileID: 114500236878555840}
   - component: {fileID: 65175617818023338}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Fishing_Rod
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -54,7 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4108569384537058}
   - component: {fileID: 120905989918190408}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: LineRenderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
