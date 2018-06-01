@@ -4,8 +4,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Item", menuName = "Items")]
 public class Item : ScriptableObject
 {
+    public bool Equipable;
     public string Name;
-    private bool _pickedUp;
     public Sprite Image;
     public GameObject ClickableGameObject;
 }

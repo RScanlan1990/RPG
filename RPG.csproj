@@ -411,6 +411,7 @@
     <Compile Include="Assets\Asset_Store\PostProcessing\Utilities\CustomMotionTexture\ExampleWheelController.cs" />
     <Compile Include="Assets\RS\Scripts\ImageEffects\PostProcess_Controller.cs" />
     <Compile Include="Assets\RS\Scripts\Interactable\Items\Clickable.cs" />
+    <Compile Include="Assets\RS\Scripts\Interactable\Items\Equipable\Skills\Fishing\FishingRod2.cs" />
     <Compile Include="Assets\RS\Scripts\Interactable\Items\Fish\Fish.cs" />
     <Compile Include="Assets\RS\Scripts\Interactable\Items\Item.cs" />
     <Compile Include="Assets\RS\Scripts\Interactable\Skills\Fishing\FishingZone.cs" />

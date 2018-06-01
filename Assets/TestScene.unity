@@ -1178,7 +1178,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 783babe3ffa5dd34c8499caa1094aae4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HookPrefab: {fileID: 1237149307697364, guid: fb9345b56355d33449ab730694177eba, type: 2}
   FishingLineDefaultPosition: {fileID: 1678898411}
 --- !u!1 &221040656
 GameObject:
@@ -5387,6 +5386,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SkillSlot: {fileID: 781676952}
+  Hook: {fileID: 1237149307697364, guid: fb9345b56355d33449ab730694177eba, type: 2}
 --- !u!114 &255283999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16614,12 +16614,12 @@ Transform:
   - {fileID: 40440264}
   - {fileID: 758701731}
   - {fileID: 607859700}
-  - {fileID: 1733891303}
   - {fileID: 685346935}
   - {fileID: 936889270}
   - {fileID: 710145820}
-  - {fileID: 1798105159}
+  - {fileID: 1733891303}
   - {fileID: 1264809903}
+  - {fileID: 1798105159}
   - {fileID: 120283536}
   - {fileID: 639505789}
   - {fileID: 2133673252}
@@ -16628,8 +16628,8 @@ Transform:
   - {fileID: 1563777113}
   - {fileID: 1359079544}
   - {fileID: 2128651781}
-  - {fileID: 1230815834}
   - {fileID: 745513340}
+  - {fileID: 1230815834}
   - {fileID: 275623903}
   - {fileID: 11898040}
   - {fileID: 566764774}

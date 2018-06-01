@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Fishing : Skill
 {
+    public GameObject Hook;
+    private GameObject _hook;
     private bool _catchingFish;
     private bool _amFishing;
     private float _fishingTimer;
@@ -24,7 +26,6 @@ public class Fishing : Skill
         MouseController.OnClick -= DoSkill;
     }
 
-
     void Start()
     {
         base.Start();
@@ -38,20 +39,21 @@ public class Fishing : Skill
 
     private void Update()
     {
-        if (_amFishing)
+        if (HasPlayerMovedWhileFishing())
         {
-            _fishingTimer -= Time.deltaTime;
-            var fishTime = _fishingTimer / FishingTime();
-            base.ActivateSkill(fishTime);   
-            if (_fishingTimer <= 0 && _catchingFish == false)
-            {
-                TryCatchFish();
-            }
+            Reset();
+        }
+    }
 
-            if (HasPlayerMovedWhileFishing())
-            {
-                Reset();
-            }
+    public void Fish()
+    {
+        if (_amFishing == false)
+        {
+            TryCatchFish();
+        } else
+        if (_hook.activeSelf == false)
+        {
+            SetHookActive();
         }
     }
 
@@ -59,21 +61,11 @@ public class Fishing : Skill
     {
         if (clickReturn != null && _amFishing == false)
         {
-            _amFishing = true;
             if (clickReturn.ClickAction == Clickable.ClickReturn.ClickActions.Fish)
             {
-                Fish(clickReturn);
+                StartFishing(clickReturn);
             }
         }
-    }
-
-    protected void Fish(Clickable.ClickReturn clickReturn)
-    {
-        StartSkill();
-        _fishingPosition = transform.position;
-        _fishingZone = clickReturn.ClickedObject.GetComponent<FishingZone>();
-        _fishingRod.Cast(clickReturn.ClickPosition);
-        _animationRouter.AnimationEventRouter(AnimationRouter.AnimationEvent.Cast);
     }
 
     private float FishingTime()
@@ -81,19 +73,36 @@ public class Fishing : Skill
         return 5.0f;
     }
 
+    private void SetHookActive()
+    {
+        if (_hook.gameObject != null && _hook.activeSelf == false)
+        {
+            _hook.SetActive(true);
+        }
+    }
+
+    private void StartFishing(Clickable.ClickReturn clickReturn)
+    {
+        SkillStartedEvent();
+        _fishingPosition = transform.position;
+        _fishingZone = clickReturn.ClickedObject.GetComponent<FishingZone>();
+        Cast(clickReturn.ClickPosition);
+    }
+
+    private void Cast(Vector3 castPosition)
+    {
+        _hook = Instantiate(Hook, castPosition, Quaternion.identity);
+        _hook.transform.SetParent(null);
+        _hook.SetActive(false);
+        _animationRouter.AnimationEventRouter(AnimationRouter.AnimationEvent.Cast);
+        _amFishing = true;
+        Debug.Log("Casted");
+    }
+
     private void TryCatchFish()
     {
         var fish = _fishingZone.RequestCatch(_Level);
         CatchFish(fish);
-    }
-
-    private bool HasPlayerMovedWhileFishing()
-    {
-        if (Vector3.Distance(transform.position, _fishingPosition) >= 2.0f)
-        {
-            return true;
-        }
-        return false;
     }
 
     private void CatchFish(Fish fish)
@@ -117,9 +126,23 @@ public class Fishing : Skill
             _catchingFish = false;
             _amFishing = false;
             _fishingTimer = FishingTime();
-            _fishingRod.ReelIn();
+            ReelIn();
             EndSkill();
             _animationRouter.AnimationEventRouter(AnimationRouter.AnimationEvent.FishingEnd);
         }
+    }
+
+    private bool HasPlayerMovedWhileFishing()
+    {
+        if (Vector3.Distance(transform.position, _fishingPosition) >= 2.0f)
+        {
+            return true;
+        }
+        return false;
+    }
+    
+    public void ReelIn()
+    {
+        Destroy(_hook);
     }
 }

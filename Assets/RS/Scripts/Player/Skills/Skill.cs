@@ -40,12 +40,12 @@ public class Skill : MonoBehaviour
         SkillSlot.UpdateSlotLevelAndXp(_Level.ToString(), _Xp.ToString());
     }
 
-    protected void ActivateSkill(float skillTime)
+    protected void SkillActiveEvent(float skillTime)
     {
         SkillActive(skillTime);
     }
 
-    protected void StartSkill()
+    protected void SkillStartedEvent()
     {
         SkillStarted();
     }
