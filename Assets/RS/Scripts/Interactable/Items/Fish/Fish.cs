@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Fish", menuName = "Items/Fishing/Fish")]
+[CreateAssetMenu(fileName = "New FishEnd", menuName = "Items/Fishing/FishEnd")]
 public class Fish : Item {
     public int RequiredLevel;
     public int MaximumLevel;

@@ -20,8 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4884554437676514}
   - component: {fileID: 33098984641609420}
-  - component: {fileID: 135722758096457050}
   - component: {fileID: 23374161286529494}
+  - component: {fileID: 114951215383839734}
   m_Layer: 0
   m_Name: Hook
   m_TagString: Untagged
@@ -83,15 +83,14 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1237149307697364}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!135 &135722758096457050
-SphereCollider:
+--- !u!114 &114951215383839734
+MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1237149307697364}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72f0fa36adefe504bab6ce26d02370d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

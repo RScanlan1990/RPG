@@ -83,7 +83,7 @@ namespace UnityStandardAssets.ImageEffects
             }
 
             if (1 == tweakMode.intValue)
-                EditorGUILayout.PropertyField (lensflares, new GUIContent("Cast lens flares"));
+                EditorGUILayout.PropertyField (lensflares, new GUIContent("SetFishingHookActive lens flares"));
 
             EditorGUILayout.Separator ();
 

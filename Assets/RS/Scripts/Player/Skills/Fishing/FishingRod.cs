@@ -2,40 +2,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FishingRod : MonoBehaviour
+[CreateAssetMenu(fileName = "New FishingRod", menuName = "Items/Skills/Fishing/FishingRod")]
+public class FishingRod : Item
 {
-
-    public GameObject FishingLineDefaultPosition;
-    private GameObject _activeHook;
+    public Transform HookDefaultPosition;
     private LineRenderer _lineRenderer;
+    private bool _hookActive;
+    private Vector3 _hookPosition;
 
-    private void Start()
+    void Start()
     {
-        _lineRenderer = gameObject.GetComponentInChildren<LineRenderer>();
+        _lineRenderer = ClickableGameObject.GetComponentInChildren<LineRenderer>();
+        HookDefaultPosition = _lineRenderer.transform;
+        _hookActive = false;
     }
 
-    private void Update()
+    void Update()
     {
-        FishingLine();
-    }
-
-    private void FishingLine()
-    {
-        _lineRenderer.SetPosition(_lineRenderer.positionCount - 1, _lineRenderer.gameObject.transform.InverseTransformPoint(ReturnActiveHookPositon()));   
-    }
-
-    private Vector3 ReturnActiveHookPositon()
-    {
-        if (HaveActiveHook())
+        if (_hookActive)
         {
-            return _activeHook.transform.position;
+            _lineRenderer.SetPosition(_lineRenderer.positionCount - 1, _lineRenderer.gameObject.transform.InverseTransformPoint(_hookPosition));
         }
-
-        return FishingLineDefaultPosition.transform.position;
     }
 
-    private bool HaveActiveHook()
+    public void SetFishingLinePostion(Vector3 hookPosition)
     {
-        return _activeHook != null && _activeHook.activeSelf;
+        _lineRenderer.positionCount += 1;
+        _hookPosition = hookPosition;
+        _hookActive = true;
+    }
+
+    public void ResetFishingLinePosition()
+    {
+        _hookActive = false;
+        _lineRenderer.positionCount -= 1;
     }
 }
