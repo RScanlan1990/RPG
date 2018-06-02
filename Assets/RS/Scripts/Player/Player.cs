@@ -2,6 +2,7 @@
 using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(PostProcess_Controller))]
+[RequireComponent(typeof(Equiped))]
 [RequireComponent(typeof(Inventory))]
 [RequireComponent(typeof(Movement))]
 [RequireComponent(typeof(Fishing))]

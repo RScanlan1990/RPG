@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InventorySlot : MonoBehaviour
+public class ItemSlot : MonoBehaviour
 {
+	public List<Item.ItemType> ItemTypes = new List<Item.ItemType>();
     public Image Icon;
     public Item Item;
 
@@ -22,7 +21,6 @@ public class InventorySlot : MonoBehaviour
     public void AddItem(Item item)
     {
         Item = item;
-        Debug.Log("adding item : " + Item);
         Icon.sprite = Item.Image;
         Icon.enabled = true;
     }

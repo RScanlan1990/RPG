@@ -9,6 +9,7 @@ public class UIController : MonoBehaviour
     public Slider SkillSlider;
     public Image MouseImage;
     private Inventory _inventory;
+    private Equiped _equiped;
     private MouseController _mouseController;
     private Item _selectedItem;
     private GameObject _activeUIPanel;
@@ -32,6 +33,7 @@ public class UIController : MonoBehaviour
     void Start()
     {
         _inventory = gameObject.GetComponent<Inventory>();
+        _equiped = gameObject.GetComponent<Equiped>();
         _mouseController = gameObject.GetComponent<MouseController>();
     }
 
@@ -55,9 +57,17 @@ public class UIController : MonoBehaviour
 
     #region Slot Clicked
     //Called By UI Button
-    public void SlotClicked(InventorySlot slot)
+	public void InventorySlotClicked(ItemSlot slot)
     {
         var item = _inventory.SlotClicked(slot, _selectedItem);
+        _selectedItem = item;
+        AdjustMouseIcon();
+    }
+
+    //Called By UI Button
+    public void EquipableSlotClicked(ItemSlot slot)
+    {
+        var item = _equiped.SlotClicked(slot, _selectedItem);
         _selectedItem = item;
         AdjustMouseIcon();
     }

@@ -3,7 +3,7 @@
 public class Inventory : MonoBehaviour {
 
     public Transform InventoryTransform;
-    private InventorySlot[] _inventorySlots;
+	private ItemSlot[] _inventorySlots;
 
     void OnEnable()
     {
@@ -17,7 +17,7 @@ public class Inventory : MonoBehaviour {
 
     void Start()
     {
-        _inventorySlots = InventoryTransform.GetComponentsInChildren<InventorySlot>();
+		_inventorySlots = InventoryTransform.GetComponentsInChildren<ItemSlot>();
     }
 
     private void DoItem(Clickable.ClickReturn clickReturn, Vector3 clickPosition)
@@ -67,19 +67,15 @@ public class Inventory : MonoBehaviour {
         return true;
     }
 
-    public Item SlotClicked(InventorySlot slot, Item item)
+	public Item SlotClicked(ItemSlot slot, Item item)
     {
         var savedItem = slot.Item;
-        if (slot.Item != null)
+        if (savedItem != null)
         {
             slot.ClearSlot(slot.Item);
-            if (item != null)
-            {
-                slot.AddItem(item);
-            }
         }
 
-        if (slot.Item == null && item != null)
+        if (item != null)
         {
             slot.AddItem(item);
         }
