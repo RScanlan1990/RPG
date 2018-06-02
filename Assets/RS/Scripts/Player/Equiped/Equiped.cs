@@ -2,8 +2,10 @@
 
 public class Equiped : MonoBehaviour {
 
-	public Transform EquipedTransform;
+    public Transform Hand;
+    public Transform EquipedTransform;
 	private ItemSlot[] _slots;
+    
 
 	void Start()
     {
@@ -43,5 +45,6 @@ public class Equiped : MonoBehaviour {
     private void EquipItem(ItemSlot slot, Item item)
 	{
         slot.Item = item;
-	}
+        var instantiated = Instantiate(item.ClickableGameObject, Hand.transform.position, Hand.transform.rotation, Hand);
+    }
 }

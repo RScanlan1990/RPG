@@ -29,7 +29,7 @@ public class FishingZone : Clickable
             }
             randomPoint -= probabilties[i];
         }
-        return null;
+        return new Fish();
     }
 
     private List<float> GetProbabilties(List<Fish> fishes)

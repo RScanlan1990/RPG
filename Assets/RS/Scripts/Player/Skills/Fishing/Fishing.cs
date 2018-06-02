@@ -9,9 +9,9 @@ public class Fishing : Skill
     private Hook _hook;
 
     private bool _amFishing;
+    private int _fishingAttempts;
     private Vector3 _fishingPosition;
     private AnimationRouter _animationRouter;
-    //private FishingRod _fishingRod;
     private FishingZone _fishingZone;
     private Inventory _inventory;
 
@@ -29,14 +29,18 @@ public class Fishing : Skill
     {
         base.Start();
         _amFishing = false;
+        _fishingAttempts = 0;
         _animationRouter = gameObject.GetComponent<AnimationRouter>();
-       // _fishingRod = gameObject.GetComponentInChildren<FishingRod>();
         _inventory = gameObject.GetComponent<Inventory>();
     }
 
     private void Update()
     {
         HasPlayerMovedWhileFishing();
+        if(_fishingAttempts >= 5)
+        {
+            Reset();
+        }
     }
 
     public void DoSkill(Clickable.ClickReturn clickReturn, Vector3 clickPosition)
@@ -68,7 +72,7 @@ public class Fishing : Skill
     }
 
     
-    // Called By Animation Event
+    // Called By Animation Event(Cast Animation)
     public void SetFishingHookActive()
     {
         if (_hook.gameObject != null && _hook.gameObject.activeSelf == false)
@@ -78,7 +82,7 @@ public class Fishing : Skill
         }
     }
 
-    // Called By Animation Event
+    // Called By Animation Event(Fishing Animation)
     public void TryCatchFish()
     {
         var fish = _fishingZone.RequestCatch(_Level);
@@ -87,16 +91,12 @@ public class Fishing : Skill
 
     private void CatchFish(Fish fish)
     {
-        if (fish != null)
+        if (fish.IsItemValid() == true)
         {
             AddXp(fish.RewardXp);
             _inventory.AddItem(fish);
-            Reset();
         }
-        else
-        {
-            Reset();
-        }
+        _fishingAttempts++;
     }
 
     private void Reset()
@@ -104,6 +104,7 @@ public class Fishing : Skill
         if (_amFishing)
         {
             _amFishing = false;
+            _fishingAttempts = 0;
             ReelIn();
             EndSkill();
            // _fishingRod.ResetFishingLinePosition();
@@ -114,11 +115,6 @@ public class Fishing : Skill
     public void ReelIn()
     {
         Destroy(_hook);
-    }
-
-    private float FishingTime()
-    {
-        return 5.0f;
     }
 
     private void HasPlayerMovedWhileFishing()
