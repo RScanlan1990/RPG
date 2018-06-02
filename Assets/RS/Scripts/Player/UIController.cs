@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class UIController : MonoBehaviour
 {
     public Slider SkillSlider;
+    public Transform ContainerTransform;
+    private List<Transform> _uiContainers = new List<Transform>();
     public Image MouseImage;
     private Inventory _inventory;
     private Equiped _equiped;
@@ -35,6 +37,16 @@ public class UIController : MonoBehaviour
         _inventory = gameObject.GetComponent<Inventory>();
         _equiped = gameObject.GetComponent<Equiped>();
         _mouseController = gameObject.GetComponent<MouseController>();
+
+        for (int i = 0; i < ContainerTransform.childCount; i++)
+        {
+            _uiContainers.Add(ContainerTransform.GetChild(i));
+        }
+
+        foreach (var container in _uiContainers)
+        {
+            container.gameObject.SetActive(false);
+        }
     }
 
     void Update()
