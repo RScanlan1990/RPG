@@ -413,6 +413,7 @@
     <Compile Include="Assets\RS\Scripts\Clickable\Skills\Fishing\FishingZone.cs" />
     <Compile Include="Assets\RS\Scripts\ImageEffects\PostProcess_Controller.cs" />
     <Compile Include="Assets\RS\Scripts\Items\Consumables\Fish\Fish.cs" />
+    <Compile Include="Assets\RS\Scripts\Items\Equipable\Equipable.cs" />
     <Compile Include="Assets\RS\Scripts\Items\Equipable\FishingRod\FishingRod.cs" />
     <Compile Include="Assets\RS\Scripts\Items\Equipable\FishingRod\Hook.cs" />
     <Compile Include="Assets\RS\Scripts\Items\Item.cs" />

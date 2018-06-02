@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New FishingRod", menuName = "Items/Skills/Fishing/FishingRod")]
-public class FishingRod : Item
+public class FishingRod : Equipable
 {
-    public Transform HookDefaultPosition;
+    private Transform HookDefaultPosition;
     private LineRenderer _lineRenderer;
     private bool _hookActive;
     private Vector3 _hookPosition;
