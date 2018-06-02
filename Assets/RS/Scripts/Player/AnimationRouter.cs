@@ -5,11 +5,23 @@ using UnityEngine;
 public class AnimationRouter : MonoBehaviour {
 
     private static Animator _animator;
+    private Rigidbody _rigidBody;
     public AnimationEvent CurrentEvent;
+
+    private Vector3 previous;
+    private float velocity;
 
     private void Start()
     {
-        _animator = gameObject.GetComponent<Animator>();
+        _animator = gameObject.GetComponentInChildren<Animator>();
+        _rigidBody = gameObject.GetComponent<Rigidbody>();
+    }
+
+    private void Update()
+    {
+        velocity = ((transform.position - previous).magnitude) / Time.deltaTime;
+        previous = transform.position;
+        _animator.SetFloat("Speed", velocity);
     }
 
     private void  SetAnimationTrigger(string name)
