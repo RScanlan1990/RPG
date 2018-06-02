@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class ItemSlot : MonoBehaviour
 {
-	public List<Item.ItemType> ItemTypes = new List<Item.ItemType>();
+	public List<Item.ItemTypes> ItemType = new List<Item.ItemTypes>();
     public Image Icon;
     public Item Item;
 

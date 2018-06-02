@@ -14,6 +14,7 @@
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <TargetFrameworkProfile></TargetFrameworkProfile>
     <CompilerResponseFile></CompilerResponseFile>
+    <UnityProjectGenerator>VSTU</UnityProjectGenerator>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2017.3.1f1</UnityVersion>
@@ -413,9 +414,9 @@
     <Compile Include="Assets\RS\Scripts\Clickable\Skills\Fishing\FishingZone.cs" />
     <Compile Include="Assets\RS\Scripts\ImageEffects\PostProcess_Controller.cs" />
     <Compile Include="Assets\RS\Scripts\Items\Consumables\Fish\Fish.cs" />
-    <Compile Include="Assets\RS\Scripts\Items\Equipable\Equipable.cs" />
     <Compile Include="Assets\RS\Scripts\Items\Equipable\FishingRod\FishingRod.cs" />
     <Compile Include="Assets\RS\Scripts\Items\Equipable\FishingRod\Hook.cs" />
+    <Compile Include="Assets\RS\Scripts\Items\Equipable\Tool.cs" />
     <Compile Include="Assets\RS\Scripts\Items\Item.cs" />
     <Compile Include="Assets\RS\Scripts\Player\AnimationRouter.cs" />
     <Compile Include="Assets\RS\Scripts\Player\Camera\CameraController.cs" />

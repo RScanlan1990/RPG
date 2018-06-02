@@ -33,7 +33,7 @@ public class CameraController : MonoBehaviour
 
     private void FollowPlayer()
     {
-        _playerPos = new Vector3(_player.transform.position.x, _player.transform.position.y + 1.0f, _player.transform.position.z);
+        _playerPos = new Vector3(_player.transform.position.x, _player.transform.position.y + 2.0f, _player.transform.position.z);
         CameraRotator.transform.position = _playerPos;
     }
 

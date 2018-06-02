@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New FishingRod", menuName = "Items/Skills/Fishing/FishingRod")]
-public class FishingRod : Equipable
+public class FishingRod : Tool
 {
     private Transform HookDefaultPosition;
     private LineRenderer _lineRenderer;

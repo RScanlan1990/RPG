@@ -4,12 +4,13 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Item", menuName = "Items")]
 public class Item : ScriptableObject
 {
-    public enum ItemType
+    public enum ItemTypes
     {
-        None, Tool
+        None,
+        FishingRod,
     }
 
-    public ItemType Type;
+    public ItemTypes Type;
 	public bool IsEquipable;
     public string Name;
     public Sprite Image;

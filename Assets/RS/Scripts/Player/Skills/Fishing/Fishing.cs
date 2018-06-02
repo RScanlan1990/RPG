@@ -13,6 +13,7 @@ public class Fishing : Skill
     private Vector3 _fishingPosition;
     private AnimationRouter _animationRouter;
     private FishingZone _fishingZone;
+    private Equiped _equiped;
     private Inventory _inventory;
 
     void OnEnable()
@@ -31,15 +32,19 @@ public class Fishing : Skill
         _amFishing = false;
         _fishingAttempts = 0;
         _animationRouter = gameObject.GetComponent<AnimationRouter>();
+        _equiped = gameObject.GetComponent<Equiped>();
         _inventory = gameObject.GetComponent<Inventory>();
     }
 
     private void Update()
     {
-        HasPlayerMovedWhileFishing();
-        if(_fishingAttempts >= 5)
+        if(_amFishing)
         {
-            Reset();
+            HasPlayerMovedWhileFishing();
+            if (_fishingAttempts >= 5)
+            {
+                Reset();
+            }
         }
     }
 
@@ -47,10 +52,13 @@ public class Fishing : Skill
     {
         if (clickReturn != null && _amFishing == false)
         {
-            _amFishing = true;
             if (clickReturn.ClickAction == Clickable.ClickReturn.ClickActions.Fish)
             {
-                StartFishing(clickReturn);
+                _amFishing = true;
+                if (_equiped.HaveToolTypeEquiped(Item.ItemTypes.FishingRod))
+                {
+                    StartFishing(clickReturn);
+                }
             }
         }
     }
@@ -114,7 +122,7 @@ public class Fishing : Skill
 
     public void ReelIn()
     {
-        Destroy(_hook);
+        DestroyImmediate(_hook.gameObject);
     }
 
     private void HasPlayerMovedWhileFishing()
