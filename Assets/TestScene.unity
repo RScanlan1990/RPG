@@ -6850,12 +6850,12 @@ Prefab:
     - target: {fileID: 54265300805685366, guid: b6c07088323603e4e83dfb96b7d61bb2,
         type: 2}
       propertyPath: m_Drag
-      value: 10
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 54265300805685366, guid: b6c07088323603e4e83dfb96b7d61bb2,
         type: 2}
       propertyPath: m_AngularDrag
-      value: 1
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b6c07088323603e4e83dfb96b7d61bb2, type: 2}
