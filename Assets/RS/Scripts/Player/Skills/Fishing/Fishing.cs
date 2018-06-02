@@ -78,7 +78,7 @@ public class Fishing : Skill
         if (_hook.gameObject != null && _hook.gameObject.activeSelf == false)
         {
             _hook.gameObject.SetActive(true);
-           // _fishingRod.SetFishingLinePostion(_hook.transform.position);
+            //_fishingRod.SetFishingLinePostion(_hook.transform.position);
         }
     }
 
@@ -91,7 +91,7 @@ public class Fishing : Skill
 
     private void CatchFish(Fish fish)
     {
-        if (fish.IsItemValid() == true)
+        if(fish != null)
         {
             AddXp(fish.RewardXp);
             _inventory.AddItem(fish);
@@ -107,7 +107,7 @@ public class Fishing : Skill
             _fishingAttempts = 0;
             ReelIn();
             EndSkill();
-           // _fishingRod.ResetFishingLinePosition();
+            //_fishingRod.ResetFishingLinePosition();
             _animationRouter.AnimationEventRouter(AnimationRouter.AnimationEvent.FishingEnd);
         }
     }

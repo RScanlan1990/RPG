@@ -15,15 +15,4 @@ public class Item : ScriptableObject
     public Sprite Image;
     public GameObject ClickableGameObject;
 
-    private bool _isValid = true;
-
-    public Item()
-    {
-        _isValid = false;
-    }
-
-    public bool IsItemValid()
-    {
-        return _isValid;
-    }
 }
