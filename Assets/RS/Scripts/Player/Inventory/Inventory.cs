@@ -38,9 +38,9 @@ public class Inventory : MonoBehaviour {
 
     private void PickUpItem(Clickable.ClickReturn clickReturn)
     {
-        var item = clickReturn.ClickedObject.GetComponent<Item>();
+        var item = clickReturn.ClickedObject.GetComponent<Loot>().Item;
         AddItem(item);
-        clickReturn.ClickedObject.SetActive(false);
+        Destroy(clickReturn.ClickedObject.gameObject);
     }
 
     public void AddItem(Item item)
@@ -63,8 +63,9 @@ public class Inventory : MonoBehaviour {
         //var heading = dropPosition - transform.position;
         //var distance = heading.magnitude;
         //var direction = heading / distance;
-        item.gameObject.transform.parent = null;
-        item.gameObject.transform.position = transform.position + (transform.forward * 3.0f);
+        //item.gameObject.transform.parent = null;
+        //item.gameObject.transform.position = transform.position + (transform.forward * 3.0f);
+        Instantiate(item.Graphics, transform.position + (transform.forward * 3.0f), transform.rotation);
         return true;
     }
 

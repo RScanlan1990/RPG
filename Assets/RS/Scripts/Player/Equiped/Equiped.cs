@@ -44,9 +44,9 @@ public class Equiped : MonoBehaviour {
 
     private void EquipItem(ItemSlot slot, Item item)
 	{
-        var newItem = Instantiate(item.gameObject, Hand.transform.position, Hand.transform.rotation, Hand);
-        slot.Item = newItem.GetComponent<Item>();
-        slot.Item.gameObject.SetActive(true);        
+        var newItem = Instantiate(item.Graphics, Hand.transform.position, Hand.transform.rotation, Hand);
+        slot.Item = item;
+        slot.Item.Graphics.SetActive(true);        
     }
 
     public Item HaveToolTypeEquiped(Item.ItemTypes itemType)

@@ -418,6 +418,7 @@
     <Compile Include="Assets\RS\Scripts\Items\Equipable\FishingRod\Hook.cs" />
     <Compile Include="Assets\RS\Scripts\Items\Equipable\Tool.cs" />
     <Compile Include="Assets\RS\Scripts\Items\Item.cs" />
+    <Compile Include="Assets\RS\Scripts\Items\Loot.cs" />
     <Compile Include="Assets\RS\Scripts\Player\AnimationRouter.cs" />
     <Compile Include="Assets\RS\Scripts\Player\Camera\CameraController.cs" />
     <Compile Include="Assets\RS\Scripts\Player\Equiped\Equiped.cs" />

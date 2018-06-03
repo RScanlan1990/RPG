@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class Item : MonoBehaviour
+public class Item : ScriptableObject
 {
     public enum ItemTypes
     {
@@ -13,4 +13,5 @@ public class Item : MonoBehaviour
 	public bool IsEquipable;
     public string Name;
     public Sprite Image;
+    public GameObject Graphics;
 }
