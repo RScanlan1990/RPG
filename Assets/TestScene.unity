@@ -3087,15 +3087,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4681834304235784, guid: 25221169c8e351842afc7d123dda434a, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 194
+      value: 189.3
       objectReference: {fileID: 0}
     - target: {fileID: 4681834304235784, guid: 25221169c8e351842afc7d123dda434a, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.992
+      value: 0.966
       objectReference: {fileID: 0}
     - target: {fileID: 4681834304235784, guid: 25221169c8e351842afc7d123dda434a, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -38.4
+      value: -42.1
       objectReference: {fileID: 0}
     - target: {fileID: 4681834304235784, guid: 25221169c8e351842afc7d123dda434a, type: 2}
       propertyPath: m_LocalRotation.x
@@ -5900,6 +5900,11 @@ RectTransform:
   m_PrefabParentObject: {fileID: 224712769455264204, guid: 1ffab56c368628f46af06fb27dfdb2c6,
     type: 2}
   m_PrefabInternal: {fileID: 802463970}
+--- !u!4 &878365624 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4160632700633686, guid: b6c07088323603e4e83dfb96b7d61bb2,
+    type: 2}
+  m_PrefabInternal: {fileID: 1049814364}
 --- !u!1001 &887762899
 Prefab:
   m_ObjectHideFlags: 0
@@ -7805,6 +7810,11 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114259834703053200, guid: b6c07088323603e4e83dfb96b7d61bb2,
+        type: 2}
+      propertyPath: PlayerSpeed
+      value: 3.5
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 95569965207137164, guid: b6c07088323603e4e83dfb96b7d61bb2, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: b6c07088323603e4e83dfb96b7d61bb2, type: 2}
@@ -8878,11 +8888,20 @@ Prefab:
       propertyPath: m_Name
       value: Item_Slot (5)
       objectReference: {fileID: 0}
-    - target: {fileID: 114983409888851958, guid: fccbf8d4bf3edbf409c7e1a07013a3ba,
+    - target: {fileID: 0}
+      propertyPath: ItemType.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114167623859830544, guid: fccbf8d4bf3edbf409c7e1a07013a3ba,
         type: 2}
       propertyPath: ItemType.Array.data[0]
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114167623859830544, guid: fccbf8d4bf3edbf409c7e1a07013a3ba,
+        type: 2}
+      propertyPath: ItemLootInstantiateTransform
+      value: 
+      objectReference: {fileID: 878365624}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fccbf8d4bf3edbf409c7e1a07013a3ba, type: 2}
   m_IsPrefabParent: 0
