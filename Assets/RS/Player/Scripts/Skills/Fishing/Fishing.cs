@@ -40,11 +40,15 @@ public class Fishing : Skill
     {
         if(_amFishing)
         {
-            HasPlayerMovedWhileFishing();
-            if (_fishingAttempts >= 6)
+            if (_equiped.HaveToolTypeEquiped(Item.ItemTypes.FishingRod) == null)
             {
-                Reset();
+                Reset(true);
             }
+            else
+            if(_fishingAttempts >= 6 || HasPlayerMovedWhileFishing() == true)
+            {
+                Reset(false);
+            }    
         }
     }
 
@@ -56,12 +60,9 @@ public class Fishing : Skill
             {
                 if (_inventory.NumberOfFreeSlots() > 0)
                 {
-                    _amFishing = true;
                     _fishingRod = _equiped.HaveToolTypeEquiped(Item.ItemTypes.FishingRod);
-                    if (_fishingRod != null)
-                    {
-                        StartFishing(clickReturn);
-                    }
+                    _amFishing = true;
+                    StartFishing(clickReturn);
                 }
             }
         }
@@ -102,7 +103,7 @@ public class Fishing : Skill
             CatchFish(fish);
         } else
         {
-            Reset();
+            Reset(false);
         }
     }
 
@@ -117,7 +118,7 @@ public class Fishing : Skill
         SkillActiveEvent(_fishingAttempts / 5.0f, "Fishing");
     }
 
-    private void Reset()
+    private void Reset(bool fishingRodDestroyed)
     {
         if (_amFishing)
         {
@@ -125,8 +126,11 @@ public class Fishing : Skill
             _fishingAttempts = 1;
             ReelIn();
             EndSkill();
-            _fishingRod.GetComponent<FishingRod_Loot>().ResetFishingLinePosition();
             _animationRouter.AnimationEventRouter(AnimationRouter.AnimationEvent.FishingEnd);
+            if(fishingRodDestroyed == false)
+            {
+                _fishingRod.GetComponent<FishingRod_Loot>().ResetFishingLinePosition();
+            }
         }
     }
 
@@ -135,11 +139,8 @@ public class Fishing : Skill
         Destroy(_hook.gameObject);
     }
 
-    private void HasPlayerMovedWhileFishing()
+    private bool HasPlayerMovedWhileFishing()
     {
-        if (_amFishing && Vector3.Distance(transform.position, _fishingPosition) >= 2.0f)
-        {
-            Reset();
-        }
+        return Vector3.Distance(transform.position, _fishingPosition) >= 2.0f;
     }
 }
