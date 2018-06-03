@@ -2,8 +2,6 @@
 
 public class Equiped : MonoBehaviour
 {
-
-    public Transform Hand;
     public Transform EquipedTransform;
 	private ItemSlot[] _slots;
     
@@ -45,7 +43,7 @@ public class Equiped : MonoBehaviour
         {
            if(DoesSlotTypeContain(slot, itemType))
            {
-                return slot.ItemLootInstantiateTransform.GetChild(0).gameObject;
+                return slot.ItemInstantiationTransform.GetChild(0).gameObject;
            }
         }
         return null;

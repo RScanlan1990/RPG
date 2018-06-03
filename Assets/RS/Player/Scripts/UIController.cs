@@ -21,7 +21,6 @@ public class UIController : MonoBehaviour
         MouseController.OnClick += MouseClicked;
         Skill.SkillActive += SkillActive;
         Skill.SkillEnded += SkillEnded;
-        Skill.SkillStarted += SkillStarted;
     }
 
     void OnDisable()
@@ -29,7 +28,6 @@ public class UIController : MonoBehaviour
         MouseController.OnClick -= MouseClicked;
         Skill.SkillActive -= SkillActive;
         Skill.SkillEnded -= SkillEnded;
-        Skill.SkillStarted -= SkillStarted;
     }
 
     void Start()
@@ -132,11 +130,6 @@ public class UIController : MonoBehaviour
             SkillSlider.transform.parent.gameObject.SetActive(true);
         }
         SkillSlider.value = skillTime;
-    }
-
-    private void SkillStarted()
-    {
-        SkillSlider.transform.parent.gameObject.SetActive(true);
     }
 
     private void SkillEnded()

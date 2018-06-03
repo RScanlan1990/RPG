@@ -29,9 +29,6 @@ public class Skill : MonoBehaviour
     public delegate void SkillAction(float skillTime);
     public static event SkillAction SkillActive;
 
-    public delegate void SkillStart();
-    public static event SkillStart SkillStarted;
-
     public delegate void SkillEnd();
     public static event SkillEnd SkillEnded;
 
@@ -43,11 +40,6 @@ public class Skill : MonoBehaviour
     protected void SkillActiveEvent(float skillTime)
     {
         SkillActive(skillTime);
-    }
-
-    protected void SkillStartedEvent()
-    {
-        SkillStarted();
     }
 
     protected void EndSkill()

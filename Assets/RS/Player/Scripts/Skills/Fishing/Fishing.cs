@@ -10,13 +10,11 @@ public class Fishing : Skill
     private bool _amFishing;
     private int _fishingAttempts;
     private Vector3 _fishingPosition;
-    private GameObject _fishingRodLoot;
+    private GameObject _fishingRod;
     private AnimationRouter _animationRouter;
     private FishingZone _fishingZone;
     private Equiped _equiped;
     private Inventory _inventory;
-
-    private GameObject _fishingRod;
 
     void OnEnable()
     {
@@ -32,7 +30,7 @@ public class Fishing : Skill
     {
         base.Start();
         _amFishing = false;
-        _fishingAttempts = 0;
+        _fishingAttempts = 1;
         _animationRouter = gameObject.GetComponent<AnimationRouter>();
         _equiped = gameObject.GetComponent<Equiped>();
         _inventory = gameObject.GetComponent<Inventory>();
@@ -43,7 +41,7 @@ public class Fishing : Skill
         if(_amFishing)
         {
             HasPlayerMovedWhileFishing();
-            if (_fishingAttempts >= 5)
+            if (_fishingAttempts >= 6)
             {
                 Reset();
             }
@@ -68,7 +66,7 @@ public class Fishing : Skill
 
     private void StartFishing(Clickable.ClickReturn clickReturn)
     {
-        SkillStartedEvent();
+        SkillActiveEvent(_fishingAttempts / 6.0f);
         _fishingPosition = transform.position;
         _fishingZone = clickReturn.ClickedObject.GetComponent<FishingZone>();
         StartCast(clickReturn.ClickPosition);
@@ -107,6 +105,7 @@ public class Fishing : Skill
             _inventory.AddItem(fish);
         }
         _fishingAttempts++;
+        SkillActiveEvent(_fishingAttempts / 6.0f);
     }
 
     private void Reset()
@@ -114,7 +113,7 @@ public class Fishing : Skill
         if (_amFishing)
         {
             _amFishing = false;
-            _fishingAttempts = 0;
+            _fishingAttempts = 1;
             ReelIn();
             EndSkill();
             _fishingRod.GetComponent<FishingRod_Loot>().ResetFishingLinePosition();

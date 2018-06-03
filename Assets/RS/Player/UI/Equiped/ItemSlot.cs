@@ -7,7 +7,7 @@ public class ItemSlot : MonoBehaviour
 	public List<Item.ItemTypes> ItemType = new List<Item.ItemTypes>();
     public Image Icon;
 
-    public Transform ItemLootInstantiateTransform;
+    public Transform ItemInstantiationTransform;
     private GameObject _itemGraphics;
     [HideInInspector]
     public Item Item;
@@ -26,9 +26,9 @@ public class ItemSlot : MonoBehaviour
     {
         _itemGraphics = Instantiate(
             item.Graphics,
-            ItemLootInstantiateTransform.transform.position,
-            ItemLootInstantiateTransform.transform.rotation,
-            ItemLootInstantiateTransform
+            ItemInstantiationTransform.transform.position,
+            ItemInstantiationTransform.transform.rotation,
+            ItemInstantiationTransform
         );
         Item = item;
         Icon.sprite = Item.Image;
