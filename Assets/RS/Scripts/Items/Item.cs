@@ -1,8 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Item", menuName = "Items")]
-public class Item : ScriptableObject
+public class Item : MonoBehaviour
 {
     public enum ItemTypes
     {
@@ -14,6 +13,4 @@ public class Item : ScriptableObject
 	public bool IsEquipable;
     public string Name;
     public Sprite Image;
-    public GameObject ClickableGameObject;
-
 }

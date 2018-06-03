@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New FishingRod", menuName = "Items/Skills/Fishing/FishingRod")]
-public class FishingRod : Tool
+public class FishingRod : Item
 {
     private Transform HookDefaultPosition;
     private LineRenderer _lineRenderer;
@@ -12,7 +11,7 @@ public class FishingRod : Tool
 
     void Start()
     {
-        _lineRenderer = ClickableGameObject.GetComponentInChildren<LineRenderer>();
+        _lineRenderer = gameObject.GetComponentInChildren<LineRenderer>();
         HookDefaultPosition = _lineRenderer.transform;
         _hookActive = false;
     }

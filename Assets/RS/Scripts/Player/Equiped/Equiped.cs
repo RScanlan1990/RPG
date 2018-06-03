@@ -44,20 +44,21 @@ public class Equiped : MonoBehaviour {
 
     private void EquipItem(ItemSlot slot, Item item)
 	{
-        slot.Item = item;
-        var instantiated = Instantiate(item.ClickableGameObject, Hand.transform.position, Hand.transform.rotation, Hand);
+        var newItem = Instantiate(item.gameObject, Hand.transform.position, Hand.transform.rotation, Hand);
+        slot.Item = newItem.GetComponent<Item>();
+        slot.Item.gameObject.SetActive(true);        
     }
 
-    public bool HaveToolTypeEquiped(Item.ItemTypes itemType)
+    public Item HaveToolTypeEquiped(Item.ItemTypes itemType)
     {
         foreach (var slot in _slots)
         {
            if(DoesSlotTypeContain(slot, itemType))
            {
-                return true;
+                return slot.Item;
            }
         }
-        return false;
+        return null;
     }
 
     private bool DoesSlotTypeContain(ItemSlot itemSlot, Item.ItemTypes itemType)

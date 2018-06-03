@@ -2,7 +2,6 @@
 
 public class Clickable : MonoBehaviour
 {
-    public Item Item;
     public float MinimuimDistance;
     public ClickReturn.ClickActions ClickAction;
     public ClickReturn.ClickTypes ClickType;

@@ -16,6 +16,8 @@ public class Fishing : Skill
     private Equiped _equiped;
     private Inventory _inventory;
 
+    private FishingRod _fishingRod;
+
     void OnEnable()
     {
         MouseController.OnClick += DoSkill;
@@ -55,7 +57,8 @@ public class Fishing : Skill
             if (clickReturn.ClickAction == Clickable.ClickReturn.ClickActions.Fish)
             {
                 _amFishing = true;
-                if (_equiped.HaveToolTypeEquiped(Item.ItemTypes.FishingRod))
+                _fishingRod = (FishingRod)_equiped.HaveToolTypeEquiped(Item.ItemTypes.FishingRod);
+                if(_fishingRod != null)
                 {
                     StartFishing(clickReturn);
                 }
@@ -86,7 +89,7 @@ public class Fishing : Skill
         if (_hook.gameObject != null && _hook.gameObject.activeSelf == false)
         {
             _hook.gameObject.SetActive(true);
-            //_fishingRod.SetFishingLinePostion(_hook.transform.position);
+            _fishingRod.SetFishingLinePostion(_hook.transform.position);
         }
     }
 
@@ -115,7 +118,7 @@ public class Fishing : Skill
             _fishingAttempts = 0;
             ReelIn();
             EndSkill();
-            //_fishingRod.ResetFishingLinePosition();
+            _fishingRod.ResetFishingLinePosition();
             _animationRouter.AnimationEventRouter(AnimationRouter.AnimationEvent.FishingEnd);
         }
     }
