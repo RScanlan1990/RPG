@@ -406,7 +406,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Fishing Cast
-  m_Speed: 2
+  m_Speed: 3
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101226129132496698}
@@ -433,7 +433,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Fishing Idle
-  m_Speed: 1
+  m_Speed: 1.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101436529185115424}
