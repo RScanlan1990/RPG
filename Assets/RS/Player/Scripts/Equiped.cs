@@ -4,8 +4,8 @@ public class Equiped : MonoBehaviour
 {
     public Transform EquipedTransform;
 	private ItemSlot[] _slots;
-    
-	void Start()
+
+    void Start()
     {
 		_slots = EquipedTransform.GetComponentsInChildren<ItemSlot>();
 	}
@@ -41,10 +41,13 @@ public class Equiped : MonoBehaviour
     {
         foreach (var slot in _slots)
         {
-           if(DoesSlotTypeContain(slot, itemType))
-           {
-                return slot.ItemInstantiationTransform.GetChild(0).gameObject;
-           }
+            if(DoesSlotTypeContain(slot, itemType))
+            {
+                if(slot.ItemInstantiationTransform.childCount > 0)
+                {
+                    return slot.ItemInstantiationTransform.GetChild(0).gameObject;
+                }
+            }
         }
         return null;
     }

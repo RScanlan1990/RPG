@@ -16,7 +16,6 @@ public class FishingRod_Loot : Loot
         _hookActive = false;
     }
 
-
     void Update()
     {
         if (_hookActive)
