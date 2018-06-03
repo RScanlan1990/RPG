@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 4677223221810456}
   - component: {fileID: 114432379988279936}
   - component: {fileID: 65986544081518138}
+  - component: {fileID: 114187362831008082}
   m_Layer: 0
   m_Name: Sardines
   m_TagString: Untagged
@@ -370,6 +371,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4, y: 1, z: 4}
   m_Center: {x: 0, y: 0, z: -0.59}
+--- !u!114 &114187362831008082
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1658742155246550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64fdf3717b776cc4593dc612b9f537b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MinimuimDistance: 5
+  ClickAction: 1
+  ClickType: 1
+  Item: {fileID: 11400000, guid: 1b15e5ac0910eb541921aa47ea13cfa8, type: 2}
 --- !u!114 &114432379988279936
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -381,7 +397,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8e6e434c606b97489df29b1ab6729c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Item: {fileID: 11400000, guid: 1b15e5ac0910eb541921aa47ea13cfa8, type: 2}
   MinimuimDistance: 3
   ClickAction: 1
   ClickType: 1

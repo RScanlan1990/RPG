@@ -19,8 +19,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4539494800031058}
-  - component: {fileID: 114136850030547324}
   - component: {fileID: 65134450100165740}
+  - component: {fileID: 114501037243209918}
   m_Layer: 0
   m_Name: Shrimps
   m_TagString: Untagged
@@ -691,7 +691,7 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!114 &114136850030547324
+--- !u!114 &114501037243209918
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -699,10 +699,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1122901043310376}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8e6e434c606b97489df29b1ab6729c7, type: 3}
+  m_Script: {fileID: 11500000, guid: 64fdf3717b776cc4593dc612b9f537b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Item: {fileID: 11400000, guid: 1b15e5ac0910eb541921aa47ea13cfa8, type: 2}
-  MinimuimDistance: 3
+  MinimuimDistance: 0
   ClickAction: 1
   ClickType: 1
+  Item: {fileID: 11400000, guid: cc928d7deebadea42ad49c33256b2862, type: 2}

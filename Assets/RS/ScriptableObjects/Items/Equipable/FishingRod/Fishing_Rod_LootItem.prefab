@@ -19,9 +19,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4681834304235784}
-  - component: {fileID: 114897522700996254}
   - component: {fileID: 65139147483151312}
-  - component: {fileID: 114814882944698180}
+  - component: {fileID: 114253173287200912}
   m_Layer: 0
   m_Name: Fishing_Rod_LootItem
   m_TagString: Untagged
@@ -127,7 +126,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.22, y: 0.47, z: 2.73}
   m_Center: {x: 0, y: 0, z: 0.88}
---- !u!114 &114814882944698180
+--- !u!114 &114253173287200912
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -142,20 +141,6 @@ MonoBehaviour:
   ClickAction: 1
   ClickType: 1
   Item: {fileID: 11400000, guid: acac043bc52f63e4c81b4dd47dc115b1, type: 2}
---- !u!114 &114897522700996254
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1472583209677068}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8e6e434c606b97489df29b1ab6729c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MinimuimDistance: 5
-  ClickAction: 1
-  ClickType: 1
 --- !u!120 &120989928524624172
 LineRenderer:
   m_ObjectHideFlags: 1
