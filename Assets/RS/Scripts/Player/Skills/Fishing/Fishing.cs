@@ -118,7 +118,7 @@ public class Fishing : Skill
             _fishingAttempts = 0;
             ReelIn();
             EndSkill();
-           // _fishingRod.ResetFishingLinePosition();
+            //_fishingRod.ResetFishingLinePosition();
             _animationRouter.AnimationEventRouter(AnimationRouter.AnimationEvent.FishingEnd);
         }
     }
