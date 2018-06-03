@@ -123,7 +123,7 @@ public class UIController : MonoBehaviour
     }
     #endregion
 
-    private void SkillActive(float skillTime)
+    private void SkillActive(float skillTime, string skillName)
     {
         if (SkillSlider.transform.parent.gameObject.activeSelf == false)
         {

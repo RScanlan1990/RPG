@@ -50,15 +50,18 @@ public class Fishing : Skill
 
     public void DoSkill(Clickable.ClickReturn clickReturn, Vector3 clickPosition)
     {
-        if (clickReturn != null && _amFishing == false)
+        if(clickReturn != null && _amFishing == false)
         {
             if (clickReturn.ClickAction == Clickable.ClickReturn.ClickActions.Fish)
             {
-                _amFishing = true;
-                _fishingRod = _equiped.HaveToolTypeEquiped(Item.ItemTypes.FishingRod);
-                if(_fishingRod != null)
+                if (_inventory.NumberOfFreeSlots() > 0)
                 {
-                    StartFishing(clickReturn);
+                    _amFishing = true;
+                    _fishingRod = _equiped.HaveToolTypeEquiped(Item.ItemTypes.FishingRod);
+                    if (_fishingRod != null)
+                    {
+                        StartFishing(clickReturn);
+                    }
                 }
             }
         }
@@ -66,7 +69,7 @@ public class Fishing : Skill
 
     private void StartFishing(Clickable.ClickReturn clickReturn)
     {
-        SkillActiveEvent(_fishingAttempts / 6.0f);
+        SkillActiveEvent(_fishingAttempts / 5.0f, "Fishing");
         _fishingPosition = transform.position;
         _fishingZone = clickReturn.ClickedObject.GetComponent<FishingZone>();
         StartCast(clickReturn.ClickPosition);
@@ -93,8 +96,14 @@ public class Fishing : Skill
     // Called By Animation Event(Fishing Animation)
     public void TryCatchFish()
     {
-        var fish = _fishingZone.RequestCatch(_Level);
-        CatchFish(fish);
+        if(_inventory.NumberOfFreeSlots() > 0)
+        {
+            var fish = _fishingZone.RequestCatch(_Level);
+            CatchFish(fish);
+        } else
+        {
+            Reset();
+        }
     }
 
     private void CatchFish(Fish fish)
@@ -105,7 +114,7 @@ public class Fishing : Skill
             _inventory.AddItem(fish);
         }
         _fishingAttempts++;
-        SkillActiveEvent(_fishingAttempts / 6.0f);
+        SkillActiveEvent(_fishingAttempts / 5.0f, "Fishing");
     }
 
     private void Reset()
@@ -123,7 +132,7 @@ public class Fishing : Skill
 
     public void ReelIn()
     {
-        DestroyImmediate(_hook.gameObject);
+        Destroy(_hook.gameObject);
     }
 
     private void HasPlayerMovedWhileFishing()

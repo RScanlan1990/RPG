@@ -64,8 +64,6 @@ public class Inventory : MonoBehaviour {
         var distance = heading.magnitude;
         var direction = heading / distance;
         var dropedPosition = transform.position + (direction * 1.0f);
-        //item.gameObject.transform.parent = null;
-        //item.gameObject.transform.position = transform.position + (transform.forward * 3.0f);
         Instantiate(item.Graphics, dropedPosition, transform.rotation);
         return true;
     }
@@ -83,5 +81,18 @@ public class Inventory : MonoBehaviour {
             slot.AddItem(item);
         }
         return savedItem;
+    }
+
+    public float NumberOfFreeSlots()
+    {
+        var freeSlots = 0;
+        foreach (var slot in _inventorySlots)
+        {
+            if(slot.Item == null)
+            {
+                freeSlots++;
+            }
+        }
+        return freeSlots;
     }
 }
