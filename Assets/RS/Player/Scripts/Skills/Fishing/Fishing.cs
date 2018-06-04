@@ -52,7 +52,7 @@ public class Fishing : Skill
         }
     }
 
-    public void DoSkill(Clickable.ClickReturn clickReturn, Vector3 clickPosition)
+    public void DoSkill(Clickable.ClickReturn clickReturn, Vector3 clickPostion, bool haveUiSelectedItem)
     {
         if(clickReturn != null && _amFishing == false)
         {
@@ -61,8 +61,11 @@ public class Fishing : Skill
                 if (_inventory.NumberOfFreeSlots() > 0)
                 {
                     _fishingRod = _equiped.HaveToolTypeEquiped(Item.ItemTypes.FishingRod);
-                    _amFishing = true;
-                    StartFishing(clickReturn);
+                    if(_fishingRod != null)
+                    {
+                        _amFishing = true;
+                        StartFishing(clickReturn);
+                    }
                 }
             }
         }

@@ -20,7 +20,7 @@ public class Inventory : MonoBehaviour {
 		_inventorySlots = InventoryTransform.GetComponentsInChildren<InventorySlot>();
     }
 
-    private void DoItem(Clickable.ClickReturn clickReturn, Vector3 clickPosition)
+    private void DoItem(Clickable.ClickReturn clickReturn, Vector3 clickPosition, bool haveUiSelectedItem)
     {
         if (clickReturn != null)
         {
@@ -64,7 +64,7 @@ public class Inventory : MonoBehaviour {
         var distance = heading.magnitude;
         var direction = heading / distance;
         var dropedPosition = transform.position + (direction * 1.0f);
-        Instantiate(item.Graphics, dropedPosition, transform.rotation);
+        Instantiate(item.Graphics, new Vector3(dropedPosition.x, transform.position.y, dropedPosition.z), transform.rotation);
         return true;
     }
 
