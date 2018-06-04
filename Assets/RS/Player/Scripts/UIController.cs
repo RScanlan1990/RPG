@@ -9,12 +9,14 @@ public class UIController : MonoBehaviour
     public Slider SkillSlider;
     public Transform ContainerTransform;
     private List<Transform> _uiContainers = new List<Transform>();
-    public Image MouseImage;
     private Inventory _inventory;
     private Equiped _equiped;
     private MouseController _mouseController;
-    private Item _selectedItem;
+   
     private GameObject _activeUIPanel;
+
+    [HideInInspector]
+    public Item UiSelectedItem;
 
     void OnEnable()
     {
@@ -47,11 +49,6 @@ public class UIController : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        MouseImage.transform.position = _mouseController.GetScreenPosition();
-    }
-
     #region SwapPanel
     //Called By UI Button
     public void SwapUiPanel(GameObject panel)
@@ -69,37 +66,28 @@ public class UIController : MonoBehaviour
     //Called By UI Button
 	public void InventorySlotClicked(InventorySlot slot)
     {
-        var item = _inventory.SlotClicked(slot, _selectedItem);
-        _selectedItem = item;
-        AdjustMouseIcon();
+        var item = _inventory.SlotClicked(slot, UiSelectedItem);
+        UiSelectedItem = item;
+        var selectedItemImage = UiSelectedItem != null ? UiSelectedItem.Image : null;
+        _mouseController.AdjustMouseIcon(selectedItemImage);
     }
 
     //Called By UI Button
     public void EquipableSlotClicked(ItemSlot slot)
     {
-        var item = _equiped.SlotClicked(slot, _selectedItem);
-        _selectedItem = item;
-        AdjustMouseIcon();
+        var item = _equiped.SlotClicked(slot, UiSelectedItem);
+        UiSelectedItem = item;
+        var selectedItemImage = UiSelectedItem != null ? UiSelectedItem.Image : null;
+        _mouseController.AdjustMouseIcon(selectedItemImage);
     }
 
-    private void AdjustMouseIcon()
-    {
-        if (_selectedItem != null)
-        {
-            MouseImage.sprite = _selectedItem.Image;
-            MouseImage.enabled = true;
-        }
-        else
-        {
-            DisableMouseImage();
-        }
-    }
+
     #endregion
 
     #region Delegates
-    private void MouseClicked(Clickable.ClickReturn clickReturn, Vector3 clickPosition)
+    private void MouseClicked(Clickable.ClickReturn clickReturn, Vector3 clickPosition, bool haveUiSelectedItem)
     {
-        if (_selectedItem != null)
+        if (UiSelectedItem != null)
         {
             DropItem();
         }
@@ -109,17 +97,9 @@ public class UIController : MonoBehaviour
     #region Drop
     public void DropItem()
     {
-        _inventory.DropItem(_selectedItem, _mouseController.GetWorldSpacePosition());
-        _selectedItem = null;
-        DisableMouseImage();
-    }
-
-    private void DisableMouseImage()
-    {
-        if (MouseImage.enabled == true)
-        {
-            MouseImage.enabled = false;
-        }
+        _inventory.DropItem(UiSelectedItem, _mouseController.GetWorldSpacePosition());
+        UiSelectedItem = null;
+        _mouseController.AdjustMouseIcon(null);
     }
     #endregion
 

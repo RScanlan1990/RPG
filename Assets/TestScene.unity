@@ -1948,7 +1948,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SkillSlider: {fileID: 529911494}
   ContainerTransform: {fileID: 1138481347}
-  MouseImage: {fileID: 221040658}
+  UiSelectedItem: {fileID: 0}
 --- !u!1001 &275623902
 Prefab:
   m_ObjectHideFlags: 0
@@ -13518,6 +13518,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 338a84a1df59fe048a7076916c7abecd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Mouse: {fileID: 221040658}
 --- !u!114 &1975776543
 MonoBehaviour:
   m_ObjectHideFlags: 0
