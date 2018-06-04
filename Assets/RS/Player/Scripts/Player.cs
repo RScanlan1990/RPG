@@ -2,6 +2,7 @@
 using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(PostProcess_Controller))]
+[RequireComponent(typeof(Health))]
 [RequireComponent(typeof(Equiped))]
 [RequireComponent(typeof(Inventory))]
 [RequireComponent(typeof(Movement))]
@@ -11,13 +12,10 @@ using UnityEngine.EventSystems;
 [RequireComponent(typeof(MouseController))]
 class Player : MonoBehaviour {
 
-    //private Target _target;
-
     private AnimationRouter _animationController;
 
     void Awake ()
 	{
-        //_target = gameObject.AddComponent<Target>();
         _animationController = gameObject.AddComponent<AnimationRouter>();
 	}
 
