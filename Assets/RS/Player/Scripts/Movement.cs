@@ -1,18 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.AI;
 
 public class Movement : MonoBehaviour
 {
     public float PlayerSpeed;
+    private NavMeshAgent navMeshAgent;
+
+    private void Start()
+    {
+        navMeshAgent = gameObject.GetComponent<NavMeshAgent>();
+    }
 
     void OnEnable()
     {
-        MouseController.OnClick += MoveTowardsWorldPositon;
+        MouseController.OnClick += CalculatePathAndMove;
     }
 
     void OnDisable()
     {
-        MouseController.OnClick -= MoveTowardsWorldPositon;
+        MouseController.OnClick -= CalculatePathAndMove;
     }
 
     public Vector3 GetPlayerPosition()
@@ -20,16 +27,29 @@ public class Movement : MonoBehaviour
         return transform.position;
     }
 
-    public void MoveTowardsWorldPositon(Clickable.ClickReturn clickReturn, Vector3 clickPosition, bool haveUiSelectedItem)
+    private void CalculatePathAndMove(Clickable.ClickReturn clickReturn, Vector3 clickPosition, bool haveUiSelectedItem)
     {
-        var lookPos = clickPosition - transform.position;
-        lookPos.y = 0;
-        var rotation = Quaternion.LookRotation(lookPos);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 100.0F);
-        if (clickReturn == null && haveUiSelectedItem == false)
+        NavMeshPath path = new NavMeshPath();
+        navMeshAgent.CalculatePath(clickPosition, path);
+        if (haveUiSelectedItem == false)
         {
-            clickPosition.y = transform.position.y;
-            this.transform.position += (clickPosition - this.transform.position).normalized * PlayerSpeed * Time.fixedDeltaTime * Mathf.Clamp(Vector3.Distance(clickPosition, transform.position), 0.0f, 1.0f);
+            if (path.status == NavMeshPathStatus.PathComplete)
+            {
+                MoveTowardsWorldPositon(clickPosition);
+            }
+            else
+            if (path.status == NavMeshPathStatus.PathPartial)
+            {
+                var pathCornerCount = path.corners.Length;
+                var lastPoint = path.corners[pathCornerCount - 1];
+
+                MoveTowardsWorldPositon(lastPoint);
+            }
         }
+    }
+
+    private void MoveTowardsWorldPositon(Vector3 destination)
+    {
+        navMeshAgent.SetDestination(destination);
     }
 }
