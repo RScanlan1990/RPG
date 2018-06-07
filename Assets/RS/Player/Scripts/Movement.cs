@@ -33,23 +33,12 @@ public class Movement : MonoBehaviour
         navMeshAgent.CalculatePath(clickPosition, path);
         if (haveUiSelectedItem == false)
         {
-            if (path.status == NavMeshPathStatus.PathComplete)
-            {
-                MoveTowardsWorldPositon(clickPosition);
-            }
-            else
-            if (path.status == NavMeshPathStatus.PathPartial)
-            {
-                var pathCornerCount = path.corners.Length;
-                var lastPoint = path.corners[pathCornerCount - 1];
-
-                MoveTowardsWorldPositon(lastPoint);
-            }
+            MoveTowardsWorldPositon(path);
         }
     }
 
-    private void MoveTowardsWorldPositon(Vector3 destination)
+    private void MoveTowardsWorldPositon(NavMeshPath path)
     {
-        navMeshAgent.SetDestination(destination);
+        navMeshAgent.SetPath(path);
     }
 }
