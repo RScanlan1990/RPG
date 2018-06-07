@@ -22,16 +22,13 @@ public class MouseController : CastRay
         Mouse.transform.position = GetScreenPosition();
         if (EventSystem.current.IsPointerOverGameObject() == false)
         {
-            if (_uiController.UiSelectedItem != null)
+            if (Input.GetButtonUp("Fire1"))
             {
-                if (Input.GetButtonUp("Fire1"))
+                if (_uiController.UiSelectedItem != null)
                 {
                     Click(true);
-                }
-            }else
-            if (Input.GetButton("Fire1"))
-            {
-                Click(false);
+                } else
+                    Click(false);
             }
         }
     }
