@@ -40,7 +40,7 @@ public class Fishing : Skill
     {
         if(_amFishing)
         {
-            if (_equiped.HaveToolTypeEquiped(Item.ItemTypes.FishingRod) == null)
+            if (_equiped.HaveToolTypeEquiped(Item.ItemTypes.Tool) == null)
             {
                 Reset(true);
             }
@@ -60,7 +60,7 @@ public class Fishing : Skill
             {
                 if (_inventory.NumberOfFreeSlots() > 0)
                 {
-                    _fishingRod = _equiped.HaveToolTypeEquiped(Item.ItemTypes.FishingRod);
+                    _fishingRod = _equiped.HaveToolTypeEquiped(Item.ItemTypes.Tool);
                     if(_fishingRod != null)
                     {
                         _amFishing = true;

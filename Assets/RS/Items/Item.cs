@@ -6,7 +6,8 @@ public class Item : ScriptableObject
     public enum ItemTypes
     {
         None,
-        FishingRod,
+        Tool,
+        Weapon,
     }
 
     public ItemTypes Type;

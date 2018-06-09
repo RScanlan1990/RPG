@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: a8af6675572fb9442821afc05b53f747
+labels:
+- Architecture
+- Audio
+- Character
+- Done
+- Effect
+- Ground
+- Prop
+- Road
+- Sky
+- Terrain
+- Vegetation
+- Vehicle
+- Wall
+- Water
+- Weapon
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

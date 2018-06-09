@@ -154,6 +154,7 @@
     <Compile Include="Assets\RS\Items\Equipable\Skill_Items\Fishing\FishingRod\FishingRod.cs" />
     <Compile Include="Assets\RS\Items\Equipable\Skill_Items\Fishing\FishingRod\FishingRod_Loot.cs" />
     <Compile Include="Assets\RS\Items\Equipable\Skill_Items\Fishing\Hooks\Hook.cs" />
+    <Compile Include="Assets\RS\Items\Equipable\Skill_Items\WoodCutting\Hatchet\Hatchet.cs" />
     <Compile Include="Assets\RS\Items\Item.cs" />
     <Compile Include="Assets\RS\Items\Loot.cs" />
     <Compile Include="Assets\RS\Player\ImageEffects\PostProccess\PostProcess_Controller.cs" />
@@ -174,6 +175,8 @@
     <Compile Include="Assets\RS\Player\UI\Inventory\InventorySlot.cs" />
     <Compile Include="Assets\RS\Player\UI\Skills\SkillSlot.cs" />
     <Compile Include="Assets\RS\Skillable\Fishing\FishingZone.cs" />
+    <Compile Include="Assets\RS\Skillable\Skillable.cs" />
+    <Compile Include="Assets\RS\Skillable\WoodCutting\Tree.cs" />
     <None Include="Assets\Asset_Store\PostProcessing\Resources\Shaders\DepthOfField.shader" />
     <None Include="Assets\Asset_Store\NatureStarterKit2\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
     <None Include="Assets\Asset_Store\NatureStarterKit2\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
