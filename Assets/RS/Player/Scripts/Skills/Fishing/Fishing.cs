@@ -16,16 +16,6 @@ public class Fishing : Skill
     private Equiped _equiped;
     private Inventory _inventory;
 
-    void OnEnable()
-    {
-        MouseController.OnClick += DoSkill;
-    }
-
-    void OnDisable()
-    {
-        MouseController.OnClick -= DoSkill;
-    }
-
     void Start()
     {
         base.Start();
@@ -34,6 +24,7 @@ public class Fishing : Skill
         _animationRouter = gameObject.GetComponent<AnimationRouter>();
         _equiped = gameObject.GetComponent<Equiped>();
         _inventory = gameObject.GetComponent<Inventory>();
+        this.enabled = false;
     }
 
     private void Update()
@@ -48,20 +39,26 @@ public class Fishing : Skill
             if(_fishingAttempts >= 6 || HasPlayerMovedWhileFishing() == true)
             {
                 Reset(false);
-            }    
+            }
+            if (_inventory.NumberOfFreeSlots() <= 0)
+            {
+                Reset(false);
+            }
         }
     }
 
-    public void DoSkill(Clickable.ClickReturn clickReturn, Vector3 clickPostion, bool haveUiSelectedItem)
+    public void TryFish(Clickable.ClickReturn clickReturn)
     {
-        if(clickReturn != null && _amFishing == false)
+        if( _amFishing == false)
         {
-            if (clickReturn.ClickAction == Clickable.ClickReturn.ClickActions.Fish)
+            _fishingZone = clickReturn.ClickedObject.GetComponent<FishingZone>();
+            if (Vector3.Distance(transform.position, clickReturn.ClickPosition) <= _fishingZone.MinimuimDistance)
             {
                 if (_inventory.NumberOfFreeSlots() > 0)
                 {
+                    //Needs to be specific fishing rod
                     _fishingRod = _equiped.HaveToolTypeEquiped(Item.ItemTypes.Tool);
-                    if(_fishingRod != null)
+                    if (_fishingRod != null)
                     {
                         _amFishing = true;
                         StartFishing(clickReturn);
@@ -73,9 +70,8 @@ public class Fishing : Skill
 
     private void StartFishing(Clickable.ClickReturn clickReturn)
     {
-        SkillActiveEvent(_fishingAttempts / 5.0f, "Fishing");
+        SkillActive(_fishingAttempts / 5.0f);
         _fishingPosition = transform.position;
-        _fishingZone = clickReturn.ClickedObject.GetComponent<FishingZone>();
         StartCast(clickReturn.ClickPosition);
     }
 
@@ -100,14 +96,8 @@ public class Fishing : Skill
     // Called By Animation Event(Fishing Animation)
     public void TryCatchFish()
     {
-        if(_inventory.NumberOfFreeSlots() > 0)
-        {
-            var fish = _fishingZone.RequestCatch(_Level);
-            CatchFish(fish);
-        } else
-        {
-            Reset(false);
-        }
+        var fish = _fishingZone.RequestCatch(_Level);
+        CatchFish(fish);
     }
 
     private void CatchFish(Fish fish)
@@ -118,7 +108,7 @@ public class Fishing : Skill
             _inventory.AddItem(fish);
         }
         _fishingAttempts++;
-        SkillActiveEvent(_fishingAttempts / 5.0f, "Fishing");
+        SkillActive(_fishingAttempts / 5.0f, "Fishing");
     }
 
     private void Reset(bool fishingRodDestroyed)
@@ -128,12 +118,13 @@ public class Fishing : Skill
             _amFishing = false;
             _fishingAttempts = 1;
             ReelIn();
-            EndSkill();
+            SkillEnded();
             _animationRouter.AnimationEventRouter(AnimationRouter.AnimationEvent.FishingEnd);
             if(fishingRodDestroyed == false)
             {
                 _fishingRod.GetComponent<FishingRod_Loot>().ResetFishingLinePosition();
             }
+            this.enabled = false;
         }
     }
 

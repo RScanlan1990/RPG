@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 [RequireComponent(typeof(Equiped))]
 [RequireComponent(typeof(Inventory))]
 [RequireComponent(typeof(Movement))]
-[RequireComponent(typeof(Fishing))]
+[RequireComponent(typeof(Skill_Router))]
 [RequireComponent(typeof(UIController))]
 [RequireComponent(typeof(CameraController))]
 [RequireComponent(typeof(MouseController))]

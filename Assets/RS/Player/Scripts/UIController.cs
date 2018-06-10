@@ -21,15 +21,11 @@ public class UIController : MonoBehaviour
     void OnEnable()
     {
         MouseController.OnClick += MouseClicked;
-        Skill.SkillActive += SkillActive;
-        Skill.SkillEnded += SkillEnded;
     }
 
     void OnDisable()
     {
         MouseController.OnClick -= MouseClicked;
-        Skill.SkillActive -= SkillActive;
-        Skill.SkillEnded -= SkillEnded;
     }
 
     void Start()
@@ -103,7 +99,7 @@ public class UIController : MonoBehaviour
     }
     #endregion
 
-    private void SkillActive(float skillTime, string skillName)
+    public void SkillActive(float skillTime)
     {
         if (SkillSlider.transform.parent.gameObject.activeSelf == false)
         {
@@ -112,8 +108,13 @@ public class UIController : MonoBehaviour
         SkillSlider.value = skillTime;
     }
 
-    private void SkillEnded()
+    public void SkillEnded()
     {
         SkillSlider.transform.parent.gameObject.SetActive(false);
+    }
+
+    public void UpdateSkillSlot(SkillSlot skillSlot, string level, string xp)
+    {
+        skillSlot.UpdateSlotLevelAndXp(level, xp);
     }
 }

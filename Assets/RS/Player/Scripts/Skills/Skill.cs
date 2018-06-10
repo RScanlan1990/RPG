@@ -25,33 +25,34 @@ public class Skill : MonoBehaviour
         {14, 40960},
         {15, 81920},
     };
-
-    public delegate void SkillAction(float skillTime, string skillName);
-    public static event SkillAction SkillActive;
-
-    public delegate void SkillEnd();
-    public static event SkillEnd SkillEnded;
+    private UIController _uiController;
 
     protected void Start()
     {
-        SkillSlot.UpdateSlotLevelAndXp(_Level.ToString(), _Xp.ToString());
+        _uiController = gameObject.GetComponent<UIController>();
+        UpdateUiSkillSlot(_Level.ToString(), _Xp.ToString());
     }
 
-    protected void SkillActiveEvent(float skillTime, string skillName)
+    protected void UpdateUiSkillSlot(string level, string xp)
     {
-        SkillActive(skillTime, skillName);
+        _uiController.UpdateSkillSlot(SkillSlot, level, xp);
     }
 
-    protected void EndSkill()
+    protected void SkillActive(float skillTime)
     {
-        SkillEnded();
+        _uiController.SkillActive(skillTime);
+    }
+
+    protected void SkillEnded()
+    {
+        _uiController.SkillEnded();
     }
 
     protected void AddXp(float xp)
     {
         _Xp += xp;
-        SkillSlot.UpdateSlotXp(_Xp.ToString());
         CheckForLevelUp();
+        UpdateUiSkillSlot(_Level.ToString(), _Xp.ToString());
     }
 
     private void CheckForLevelUp()

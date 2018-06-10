@@ -168,6 +168,7 @@
     <Compile Include="Assets\RS\Player\Scripts\Player.cs" />
     <Compile Include="Assets\RS\Player\Scripts\Skills\Fishing\Fishing.cs" />
     <Compile Include="Assets\RS\Player\Scripts\Skills\Skill.cs" />
+    <Compile Include="Assets\RS\Player\Scripts\Skills\Skill_Router.cs" />
     <Compile Include="Assets\RS\Player\Scripts\Survival\Health\Health.cs" />
     <Compile Include="Assets\RS\Player\Scripts\Target.cs" />
     <Compile Include="Assets\RS\Player\Scripts\UIController.cs" />

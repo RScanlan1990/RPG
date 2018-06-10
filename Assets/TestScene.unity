@@ -32688,6 +32688,10 @@ Prefab:
       propertyPath: m_AnchoredPosition.y
       value: -0.35541916
       objectReference: {fileID: 0}
+    - target: {fileID: 1687381828044870, guid: 8ecff133c325bb54cbf7c40d5fcceb88, type: 2}
+      propertyPath: m_Name
+      value: FishingSkillSlot
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8ecff133c325bb54cbf7c40d5fcceb88, type: 2}
   m_IsPrefabParent: 0
@@ -35860,6 +35864,7 @@ GameObject:
   - component: {fileID: 1975776546}
   - component: {fileID: 1975776536}
   - component: {fileID: 1975776547}
+  - component: {fileID: 1975776548}
   m_Layer: 2
   m_Name: Player
   m_TagString: Untagged
@@ -36054,6 +36059,17 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &1975776548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1975776534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5808089eb3f5a1648b4baca828841b5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1984424334 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224781299382808506, guid: fccbf8d4bf3edbf409c7e1a07013a3ba,
@@ -41024,11 +41040,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cc928d7deebadea42ad49c33256b2862, type: 2}
   - {fileID: 11400000, guid: 1b15e5ac0910eb541921aa47ea13cfa8, type: 2}
   - {fileID: 11400000, guid: 2e6604ac4950575438ea4b54dc0e8af8, type: 2}
-  RewardItemsProbabilties:
-  - 0.5
-  - 0.5
-  - 0.5
-  - 0.25
 --- !u!65 &2044396114
 BoxCollider:
   m_ObjectHideFlags: 0

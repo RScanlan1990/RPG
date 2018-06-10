@@ -1,11 +1,9 @@
 fileFormatVersion: 2
-guid: 94e60df0c12b72743824cef2ca9059fc
+guid: 5808089eb3f5a1648b4baca828841b5e
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - SkillSlot: {instanceID: 0}
-  - Hook: {fileID: 114951215383839734, guid: fb9345b56355d33449ab730694177eba, type: 2}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
