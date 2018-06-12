@@ -9,7 +9,6 @@ public class Fishing : Skill
     private Hook _hook;
     private Vector3 _fishingPosition;
     private GameObject _fishingRod;
-    private AnimationRouter _animationRouter;
     private FishingZone _fishingZone;
     private Equiped _equiped;
     private Inventory _inventory;
@@ -17,14 +16,11 @@ public class Fishing : Skill
     new void Start()
     {
         base.Start();
-        _skilling = false;
-        _skillAttempts = 1;
-        _animationRouter = gameObject.GetComponent<AnimationRouter>();
         _equiped = gameObject.GetComponent<Equiped>();
         _inventory = gameObject.GetComponent<Inventory>();
     }
 
-    private void Update()
+    new void Update()
     {
         if(_skilling)
         {
@@ -68,7 +64,7 @@ public class Fishing : Skill
         _hook = Instantiate(Hook, castPosition, Quaternion.identity);
         _hook.transform.SetParent(null);
         _hook.gameObject.SetActive(false);
-        _animationRouter.AnimationEventRouter(AnimationRouter.AnimationEvent.Cast);
+        SendAnimationRouterEvent(AnimationRouter.AnimationEvent.Cast);
     }
 
     // Called By Animation Event(Cast Animation)
@@ -103,17 +99,16 @@ public class Fishing : Skill
     {
         if (_skilling)
         {
-            _skilling = false;
-            _skillAttempts = 1;
+            base.Reset();
             ReelIn();
             SkillEnded();
-            _animationRouter.AnimationEventRouter(AnimationRouter.AnimationEvent.FishingEnd);
-            _fishingRod.GetComponent<FishingRod_Loot>().ResetFishingLinePosition();
+            SendAnimationRouterEvent(AnimationRouter.AnimationEvent.FishingEnd);
         }
     }
 
     public void ReelIn()
     {
         Destroy(_hook.gameObject);
+        _fishingRod.GetComponent<FishingRod_Loot>().ResetFishingLinePosition();
     }
 }

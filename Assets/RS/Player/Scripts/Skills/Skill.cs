@@ -8,7 +8,7 @@ public class Skill : MonoBehaviour
     protected float _xp = 0;
     protected int _level = 1;
     protected int _skillAttempts = 0;
-    protected bool _skilling;
+    protected bool _skilling = false;
     protected Dictionary<int, int> _levels = new Dictionary<int, int>
     {
         {1, 0},
@@ -28,6 +28,7 @@ public class Skill : MonoBehaviour
         {15, 81920},
     };
     private UIController _uiController;
+    private AnimationRouter _animationRouter;
 
     protected void OnEnable()
     {
@@ -41,6 +42,7 @@ public class Skill : MonoBehaviour
     protected void Start()
     {
         _uiController = gameObject.GetComponent<UIController>();
+        _animationRouter = gameObject.GetComponent<AnimationRouter>();
         UpdateUiSkillSlot(_level.ToString(), _xp.ToString());
     }
 
@@ -90,6 +92,12 @@ public class Skill : MonoBehaviour
 
     protected virtual void Reset()
     {
+        _skilling = false;
+        _skillAttempts = 0;
+    }
 
+    protected void SendAnimationRouterEvent(AnimationRouter.AnimationEvent animationEvent)
+    {
+        _animationRouter.AnimationEventRouter(animationEvent);
     }
 }
