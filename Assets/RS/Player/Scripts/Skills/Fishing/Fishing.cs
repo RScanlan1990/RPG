@@ -34,19 +34,16 @@ public class Fishing : Skill
 
     public void TryFish(Clickable.ClickReturn clickReturn)
     {
-        if( _skilling == false)
+        _fishingZone = clickReturn.ClickedObject.GetComponent<FishingZone>();
+        if (Vector3.Distance(transform.position, clickReturn.ClickPosition) <= _fishingZone.MinimuimDistance)
         {
-            _fishingZone = clickReturn.ClickedObject.GetComponent<FishingZone>();
-            if (Vector3.Distance(transform.position, clickReturn.ClickPosition) <= _fishingZone.MinimuimDistance)
+            if (_inventory.NumberOfFreeSlots() > 0)
             {
-                if (_inventory.NumberOfFreeSlots() > 0)
+                if(_equiped.HaveItemEquiped(_fishingZone.AcceptedTools))
                 {
-                    if(_equiped.HaveItemEquiped(_fishingZone.AcceptedTools))
-                    {
-                        _fishingRod = _equiped.HaveToolTypeEquiped(Item.ItemType.Tool);
-                        _skilling = true;
-                        StartFishing(clickReturn);
-                    }
+                    _fishingRod = _equiped.HaveToolTypeEquiped(Item.ItemType.Tool);
+                    _skilling = true;
+                    StartFishing(clickReturn);
                 }
             }
         }
@@ -54,7 +51,7 @@ public class Fishing : Skill
 
     private void StartFishing(Clickable.ClickReturn clickReturn)
     {
-        SkillActive(_skillAttempts / 5.0f);
+        SendSkillAttemptedUiEvent();
         _fishingPosition = transform.position;
         StartCast(clickReturn.ClickPosition);
     }
@@ -92,7 +89,7 @@ public class Fishing : Skill
             _inventory.AddItem(fish);
         }
         _skillAttempts++;
-        SkillActive(_skillAttempts / 5.0f);
+        SendSkillAttemptedUiEvent();
     }
 
     protected override void Reset()
@@ -106,7 +103,7 @@ public class Fishing : Skill
         }
     }
 
-    public void ReelIn()
+    private void ReelIn()
     {
         Destroy(_hook.gameObject);
         _fishingRod.GetComponent<FishingRod_Loot>().ResetFishingLinePosition();

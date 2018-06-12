@@ -54,16 +54,6 @@ public class Skill : MonoBehaviour
         }
     }
 
-    protected void UpdateUiSkillSlot(string level, string xp)
-    {
-        _uiController.UpdateSkillSlot(SkillSlot, level, xp);
-    }
-
-    protected void SkillActive(float skillTime)
-    {
-        _uiController.SkillActive(skillTime);
-    }
-
     protected void SkillEnded()
     {
         _uiController.SkillEnded();
@@ -74,6 +64,11 @@ public class Skill : MonoBehaviour
         _xp += xp;
         CheckForLevelUp();
         UpdateUiSkillSlot(_level.ToString(), _xp.ToString());
+    }
+
+    private void UpdateUiSkillSlot(string level, string xp)
+    {
+        _uiController.UpdateSkillSlot(SkillSlot, level, xp);
     }
 
     private void CheckForLevelUp()
@@ -99,5 +94,15 @@ public class Skill : MonoBehaviour
     protected void SendAnimationRouterEvent(AnimationRouter.AnimationEvent animationEvent)
     {
         _animationRouter.AnimationEventRouter(animationEvent);
+    }
+
+    protected void SendSkillAttemptedUiEvent()
+    {
+        SkillAttempted();
+    }
+
+    private void SkillAttempted()
+    {
+        _uiController.SkillActive(_skillAttempts / 5.0f);
     }
 }
