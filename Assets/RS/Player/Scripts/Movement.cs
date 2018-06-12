@@ -7,6 +7,9 @@ public class Movement : MonoBehaviour
     public float PlayerSpeed;
     private NavMeshAgent navMeshAgent;
 
+    public delegate void MoveAction();
+    public static event MoveAction OnMove;
+
     private void Start()
     {
         navMeshAgent = gameObject.GetComponent<NavMeshAgent>();
@@ -40,5 +43,6 @@ public class Movement : MonoBehaviour
     private void MoveTowardsWorldPositon(NavMeshPath path)
     {
         navMeshAgent.SetPath(path);
+        OnMove();
     }
 }

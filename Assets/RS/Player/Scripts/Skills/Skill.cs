@@ -5,9 +5,11 @@ using UnityEngine;
 public class Skill : MonoBehaviour
 {
     public SkillSlot SkillSlot;
-    protected float _Xp = 0;
-    protected int _Level = 1;
-    protected Dictionary<int, int> _Levels = new Dictionary<int, int>
+    protected float _xp = 0;
+    protected int _level = 1;
+    protected int _skillAttempts = 0;
+    protected bool _skilling;
+    protected Dictionary<int, int> _levels = new Dictionary<int, int>
     {
         {1, 0},
         {2, 10},
@@ -27,10 +29,27 @@ public class Skill : MonoBehaviour
     };
     private UIController _uiController;
 
+    protected void OnEnable()
+    {
+        Movement.OnMove += Reset;
+    }
+
+    protected void OnDisable()
+    {
+        Movement.OnMove -= Reset;
+    }
     protected void Start()
     {
         _uiController = gameObject.GetComponent<UIController>();
-        UpdateUiSkillSlot(_Level.ToString(), _Xp.ToString());
+        UpdateUiSkillSlot(_level.ToString(), _xp.ToString());
+    }
+
+    protected void Update()
+    {
+        if(_skillAttempts >= 5)
+        {
+            Reset();
+        }
     }
 
     protected void UpdateUiSkillSlot(string level, string xp)
@@ -50,22 +69,27 @@ public class Skill : MonoBehaviour
 
     protected void AddXp(float xp)
     {
-        _Xp += xp;
+        _xp += xp;
         CheckForLevelUp();
-        UpdateUiSkillSlot(_Level.ToString(), _Xp.ToString());
+        UpdateUiSkillSlot(_level.ToString(), _xp.ToString());
     }
 
     private void CheckForLevelUp()
     {
-        var level = _Levels.Where(l => l.Value <= _Xp).ToList().OrderByDescending(l => l.Value).First();
-        var difference = level.Key - _Level;
+        var level = _levels.Where(l => l.Value <= _xp).ToList().OrderByDescending(l => l.Value).First();
+        var difference = level.Key - _level;
         if (difference > 0)
         {
             for (int i = 0; i < difference; i++)
             {
-                _Level++;
-                SkillSlot.UpdateSlotLevel(_Level.ToString());
+                _level++;
+                SkillSlot.UpdateSlotLevel(_level.ToString());
             }
         }
+    }
+
+    protected virtual void Reset()
+    {
+
     }
 }

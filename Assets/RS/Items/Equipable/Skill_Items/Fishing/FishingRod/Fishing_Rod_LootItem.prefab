@@ -86,6 +86,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 49107ed3e5bfc604589aa55f70828b6b, type: 3}
   m_StaticBatchInfo:
@@ -141,6 +142,8 @@ MonoBehaviour:
   ClickAction: 1
   ClickType: 1
   Item: {fileID: 11400000, guid: acac043bc52f63e4c81b4dd47dc115b1, type: 2}
+  HandOffset: {x: 0, y: 0, z: 0}
+  HandRotationOffset: {x: 0, y: 0, z: 0}
 --- !u!120 &120989928524624172
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -154,6 +157,7 @@ LineRenderer:
   m_MotionVectors: 0
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: ba704eaf9b316fa47b05435b9a4b6989, type: 2}
   m_StaticBatchInfo:
@@ -191,12 +195,15 @@ LineRenderer:
     widthCurve:
       serializedVersion: 2
       m_Curve:
-      - serializedVersion: 2
+      - serializedVersion: 3
         time: 0
         value: 0.023809433
         inSlope: 0
         outSlope: 0
         tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 0

@@ -10,7 +10,6 @@ public class Skill_Router : MonoBehaviour
     private void Start()
     {
         _fising = gameObject.GetComponent<Fishing>();
-
     }
 
     void OnEnable()
@@ -29,7 +28,6 @@ public class Skill_Router : MonoBehaviour
         {
             if (clickReturn.ClickAction == Clickable.ClickReturn.ClickActions.Fish)
             {
-                _fising.enabled = true;
                 _fising.TryFish(clickReturn);
             }
         }

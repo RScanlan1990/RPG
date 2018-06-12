@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class Equiped : MonoBehaviour
 {
@@ -37,7 +38,35 @@ public class Equiped : MonoBehaviour
         slot.AddItem(itemToEquip);
     }
 
-    public GameObject HaveToolTypeEquiped(Item.ItemTypes itemType)
+    public bool HaveItemEquiped(List<Item> items)
+    {
+        foreach (var item in items)
+        {
+            foreach (var slot in _slots)
+            {
+                var slotId = slot.Item == null ? -1 : slot.Item.Id;
+                if (item.Id == slotId)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public bool HaveItemEquiped(Item item)
+    {
+        foreach (var slot in _slots)
+        {
+            if(slot.Item == item)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public GameObject HaveToolTypeEquiped(Item.ItemType itemType)
     {
         foreach (var slot in _slots)
         {
@@ -52,7 +81,7 @@ public class Equiped : MonoBehaviour
         return null;
     }
 
-    private bool DoesSlotTypeContain(ItemSlot itemSlot, Item.ItemTypes itemType)
+    private bool DoesSlotTypeContain(ItemSlot itemSlot, Item.ItemType itemType)
     {
         if (itemSlot.ItemType.Contains(itemType))
         {

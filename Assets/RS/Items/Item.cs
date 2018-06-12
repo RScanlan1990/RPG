@@ -3,15 +3,16 @@ using UnityEngine;
 
 public class Item : ScriptableObject
 {
-    public enum ItemTypes
+    public enum ItemType
     {
         None,
         Tool,
         Weapon,
     }
 
-    public ItemTypes Type;
+    public ItemType Type;
 	public bool IsEquipable;
+    public int Id;
     public string Name;
     public Sprite Image;
     public GameObject Graphics;

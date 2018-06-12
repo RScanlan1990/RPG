@@ -149,6 +149,7 @@
     <Compile Include="Assets\Asset_Store\PostProcessing\Runtime\Utils\MaterialFactory.cs" />
     <Compile Include="Assets\Asset_Store\PostProcessing\Runtime\Utils\RenderTextureFactory.cs" />
     <Compile Include="Assets\Asset_Store\PostProcessing\Utilities\CustomMotionTexture\ExampleWheelController.cs" />
+    <Compile Include="Assets\Debbugger.cs" />
     <Compile Include="Assets\RS\Items\Clickable.cs" />
     <Compile Include="Assets\RS\Items\Consumable\Skill_Collectables\Fish\Fish.cs" />
     <Compile Include="Assets\RS\Items\Equipable\Skill_Items\Fishing\FishingRod\FishingRod.cs" />
